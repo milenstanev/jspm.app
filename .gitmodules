@@ -1,6 +1,6 @@
 [submodule "angular.core"]
 	path = angular.core
 	url = https://github.com/milenstanev/mstanev.angular.1.x.x.core.git
-[submodule "angular.modul-template"]
-	path = angular.modul-template
+[submodule "angular.template"]
+	path = angular.template
 	url = https://github.com/milenstanev/jspm.angular.template.git
