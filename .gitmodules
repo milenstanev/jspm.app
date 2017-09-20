@@ -1,0 +1,6 @@
+[submodule "src/jspm.angular.template"]
+	path = src/jspm.angular.template
+	url = https://github.com/milenstanev/jspm.angular.template.git
+[submodule "src/mstanev.angular.1.x.x.core"]
+	path = src/mstanev.angular.1.x.x.core
+	url = https://github.com/milenstanev/mstanev.angular.1.x.x.core.git

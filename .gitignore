@@ -6,6 +6,7 @@
 /esdoc/
 /config.js
 /.yarnclean
-ll
 /yarn.lock
 /package-lock.json
+/src/jspm.angular.template/
+/src/mstanev.angular.1.x.x.core/
