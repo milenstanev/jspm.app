@@ -1,0 +1,14 @@
+jspm.angular.app:
+  build: .
+  container_name: app
+  command: npm start
+  ports:
+   - "3000:3000"
+   - "3001:3001"
+   - "3002:3002"
+   - "3003:3003"
+   - "3004:3004"
+  environment:
+   - NODE_ENV=development
+  volumes:
+   - ./:/usr/local/app

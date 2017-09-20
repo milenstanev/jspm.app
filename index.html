@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body ng-cloak>
+
+<div ui-view></div>
+
+<script src="jspm_packages/system.js"></script>
+<script src="config.js"></script>
+
+<script>
+  SystemJS.config({
+    defaultJSExtensions: true,
+    transpiler: "plugin-babel",
+    babelOptions: {
+      presets: ['babel-preset-es2017'],
+      plugins: ['babel-plugin-transform-decorators-legacy']
+    },
+    map: {
+      "systemjs-babel-build": "npm:systemjs-plugin-babel@0.0.25/systemjs-babel-browser.js"
+    }
+  });
+
+  SystemJS.import('./src/index');
+  //SystemJS.import('./dist');
+</script>
+</body>
+</html>

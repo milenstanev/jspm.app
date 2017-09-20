@@ -1,0 +1,6 @@
+<h1>Home</h1>
+<p>Hello, {{ $ctrl }}!</p>
+data: {{ data = $ctrl.map.get("data") }}
+<div ng-repeat="items in data">
+  {{ items }}
+</div>
