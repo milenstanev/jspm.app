@@ -8,5 +8,3 @@
 /.yarnclean
 /yarn.lock
 /package-lock.json
-/src/jspm.angular.template/
-/src/mstanev.angular.1.x.x.core/
