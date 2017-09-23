@@ -8,3 +8,6 @@
 /.yarnclean
 /yarn.lock
 /package-lock.json
+.yarnclean
+package-lock.json
+yarn.lock
