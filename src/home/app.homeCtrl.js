@@ -2,39 +2,58 @@
  * Controller
  */
 function decor(ref) {
+  window.Object.defineProperty(ref, 'map', {
+    value: new Map(),
+    writable: true,
+    enumerable: true,
+    configurable: true
+  });
+
+  ref.map.set('test', 'Test');
+
   return ref;
 }
 
+function inject(ref) {
+  console.log(ref)
+
+  return ref;
+}
+
+class CtrlBase {
+  constructor() {
+    /**
+     * View Model
+     * @type {Map}
+     * @private
+     */
+    this.vm = new Map();
+  }
+}
+
 @decor
-class HomeCtrl {
+class HomeCtrl extends CtrlBase {
   user = {
     name: 'User name'
   };
-  /**
-   * @type {Map}
-   */
-  map = new Map();
 
-  static asd = "Asd";
-  qwe = "qwe";
+  static $inject = [
+    '$http'
+  ];
 
-  init() {
-    this.map.set('data', [
+  constructor() {
+    super();
+  }
+
+  $onInit() {
+    const data = [
       {title: '1'},
       {title: '2'},
       {title: '3'},
       {title: '4'}
-    ]);
-  }
-  // TODO: inject decorator
-  constructor($http) {
-    $http.get('http://localhost:3000/api//svc/translations').then(
-      res => console.log(res)
-    );
+    ]
 
-    this.asd = 'asd';
-
-    this.init();
+    this.vm.set('data', data);
   }
 }
 

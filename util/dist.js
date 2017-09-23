@@ -4,15 +4,17 @@ const Builder = require('systemjs-builder');
 const pjson = require('../package.json');
 
 let builderConfigMeta = {
-  "angular-core": {
+  'angular-core': {
     build: false
   }
 };
 
 for(let key in pjson.jspm.dependencies) {
-  builderConfigMeta[key] = {
-    build: false
-  };
+  if(!builderConfigMeta.hasOwnProperty(key)) {
+    builderConfigMeta[key] = {
+      build: false
+    };
+  }
 }
 
 /**
@@ -49,8 +51,7 @@ builder
       minify: true,
       mangle: false,
       sourceMaps: true,
-      format: 'umd',
-      runtime: true
+      format: 'umd'
     }
   ).then(function() {
   console.log('Build complete\n');

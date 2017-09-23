@@ -4,3 +4,6 @@
 [submodule "angular.template"]
 	path = angular.template
 	url = https://github.com/milenstanev/jspm.angular.template.git
+[submodule "angular.lazyload-router"]
+	path = angular.lazyload-router
+	url = https://github.com/milenstanev/jspm.angular.lazyload-router.git

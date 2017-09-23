@@ -1,14 +1,23 @@
-import { angular } from 'angular-core';
+import { angular, CoreModule } from 'angular-core';
 
 import appHomeTpl from './app.home.html!text';
 import HomeCtrl from './app.homeCtrl.js';
 
-const appHome = angular.module('app.home', []);
+export const appHome = angular
+  .module('app.home', [
+    CoreModule
+  ])
+  .config(($stateProvider, $urlRouterProvider, defaultView) => {
+    defaultView = '/home';
 
-appHome.component('appHome', {
-  template: appHomeTpl,
-  controller: HomeCtrl
-});
-
-export default 'app.home';
+    $stateProvider
+      .state('home', {
+        url: '/home',
+        component: 'appHome'
+      });
+  })
+  .component('appHome', {
+    template: appHomeTpl,
+    controller: HomeCtrl
+  });
 

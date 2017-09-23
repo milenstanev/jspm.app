@@ -1,20 +1,25 @@
 import { angular, CoreModule } from 'angular-core';
+import { appLazyLoadRouterModule, futureRoutesCollection } from 'featureRoutes';
 
-import appHome from './home/app.home';
+import { futureRoutes } from './futureRoutes';
+
+Object.assign(futureRoutesCollection, [...futureRoutes]);
 
 export const Module = angular
   .module('app', [
     CoreModule,
-    appHome
+    appLazyLoadRouterModule
   ])
-  .config(($stateProvider, $urlRouterProvider) => {
+  .constant('defaultView', '/home')
+  .config(($stateProvider, $urlRouterProvider, defaultView) => {
     $stateProvider
-      .state('home', {
-        url: '/home',
-        component: 'appHome'
+      .state('404', {
+        url: '/404',
+        component: 'page404'
       });
 
-    return $urlRouterProvider.otherwise('/home');
-  });
+    return $urlRouterProvider.otherwise(defaultView || '404');
+  })
+  .component('page404', {template: '404'})
 
 angular.bootstrap(document.body, [Module.name]);
