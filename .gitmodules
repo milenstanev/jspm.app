@@ -7,3 +7,6 @@
 [submodule "angular.lazyload-router"]
 	path = angular.lazyload-router
 	url = https://github.com/milenstanev/jspm.angular.lazyload-router.git
+[submodule "angular.test-module"]
+	path = angular.test-module
+	url = https://github.com/milenstanev/jspm.angular.test-module.git
