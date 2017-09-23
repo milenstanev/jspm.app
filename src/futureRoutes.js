@@ -3,8 +3,16 @@ export const futureRoutes = [
     'stateName': 'home',
     'urlPrefix': '/home',
     'type': 'load',
-    'src': './src/home/app.home',
+    'src': 'homeComponent',
     'moduleExport': 'module:name:constant',
-    'moduleExportName': 'appHome',
+    'moduleExportName': 'app.home',
+  },
+  {
+    'stateName': 'test',
+    'urlPrefix': '/test',
+    'type': 'load',
+    'src': 'testModule',
+    'moduleExport': 'module:name:constant',
+    'moduleExportName': 'testModule',
   }
 ];

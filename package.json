@@ -12,21 +12,23 @@
     "docker-start": "docker-compose start",
     "docker-stop": "docker-compose stop",
     "bash": "docker-compose exec jspm.angular.app bash",
-    "start": "node ./util/start.js",
+    "start:dev": "gulp dev && npm run jspm-update && npm run jspm-bundle && node ./util/start.js",
+    "start:prod": "gulp prod && npm run jspm-bundle && node ./util/start.js",
     "build": "node ./util/dist.js app .",
     "jspm-link": "./node_modules/.bin/jspm link -y",
     "jspm-update": "./node_modules/.bin/jspm update && ./node_modules/.bin/jspm clean",
     "jspm-unbundle": "./node_modules/.bin/jspm unbundle",
-    "jspm-bundle": "./node_modules/.bin/jspm bundle src/index.js src/index.bundle.js --inject --minify --no-mangle"
+    "jspm-bundle": "./node_modules/.bin/jspm bundle src/index.js src/bundle.js --inject --minify --no-mangle"
   },
   "author": "Milen Stanev <milen.stanev@gmail.com>",
   "license": "ISC",
   "jspm": {
     "dependencies": {
-      "angular-core": "milenstanev/mstanev.angular.1.x.x.core@^0.0.2",
+      "angular-core": "milenstanev/mstanev.angular.1.x.x.core@^0.0.3",
       "css": "systemjs/plugin-css@^0.1.36",
       "featureRoutes": "milenstanev/jspm.angular.lazyload-router@master",
       "json": "systemjs/plugin-json@^0.3.0",
+      "testModule": "milenstanev/jspm.angular.test-module@master",
       "text": "systemjs/plugin-text@^0.0.11"
     },
     "devDependencies": {
@@ -40,7 +42,10 @@
   },
   "devDependencies": {
     "browser-sync": "^2.18.13",
-    "eslint": "^4.7.1",
+    "eslint": "^4.7.2",
+    "gulp": "^3.9.1",
+    "gulp-dev": "^0.3.0",
+    "gulp-strip-comments": "^2.5.1",
     "jspm": "^0.16.53"
   }
 }

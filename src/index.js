@@ -3,7 +3,7 @@ import { appLazyLoadRouterModule, futureRoutesCollection } from 'featureRoutes';
 
 import { futureRoutes } from './futureRoutes';
 
-const defaultView = '';
+const defaultView = '/test' || futureRoutes[0].urlPrefix;
 Object.assign(futureRoutesCollection, [...futureRoutes]);
 
 export const Module = angular
@@ -11,7 +11,8 @@ export const Module = angular
     CoreModule,
     appLazyLoadRouterModule
   ])
-  .config(($stateProvider, $urlRouterProvider) => {
+  .constant('defaultView', defaultView)
+  .config(($stateProvider, $urlRouterProvider, defaultView) => {
     $stateProvider
       .state('404', {
         url: '/404',

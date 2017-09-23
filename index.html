@@ -3,9 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <!-- dev -->
   <script src="jspm_packages/system.js"></script>
+  <!-- /dev -->
+
+  <!-- !dev -->
+  <!-- <script src="jspm_packages/system-csp-production.js"></script> -->
+  <!-- <script src="jspm_packages/system-polyfills.js"></script> -->
+  <!-- /!dev -->
+
   <script src="config.js"></script>
   <script>
+    <!-- dev -->
     SystemJS.config({
       defaultJSExtensions: true,
       transpiler: "plugin-babel",
@@ -18,16 +27,21 @@
         //, "angular-core": "coreDevelop"
       },
       paths: {
-        "coreDevelop": "src/angular.core/src/index.js"
+        "homeComponent": "src/home/app.home.js"
       }
     });
+    SystemJS.import('./src/index');
+    <!-- /dev -->
 
-    //SystemJS.import('./src/index');
-    SystemJS.import('./dist');
+    <!-- !dev -->
+    <!-- SystemJS.import('./src/index'); -->
+    <!-- /!dev -->
   </script>
+
 </head>
 <body ng-cloak>
 
 <div ui-view></div>
+
 </body>
 </html>
