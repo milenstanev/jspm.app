@@ -11,8 +11,8 @@
   <!-- <script src="jspm_packages/system-csp-production.js"></script> -->
   <!-- <script src="jspm_packages/system-polyfills.js"></script> -->
   <!-- /!dev -->
-
   <script src="config.js"></script>
+
   <script>
     <!-- dev -->
     SystemJS.config({
@@ -24,17 +24,23 @@
       },
       map: {
         "systemjs-babel-build": "npm:systemjs-plugin-babel@0.0.25/systemjs-babel-browser.js"
-        //, "angular-core": "coreDevelop"
       },
       paths: {
         "homeComponent": "src/home/app.home.js"
       }
     });
+
     SystemJS.import('./src/index');
     <!-- /dev -->
 
     <!-- !dev -->
-    <!-- SystemJS.import('./src/index'); -->
+    <!--     SystemJS.config({ -->
+    <!--       transpiler: "babel", -->
+    <!--       paths: { -->
+    <!--         "homeComponent": "src/home/app.home.js" -->
+    <!--       } -->
+    <!--     }) -->
+    <!--     SystemJS.import('./src/index'); -->
     <!-- /!dev -->
   </script>
 

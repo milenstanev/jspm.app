@@ -1,6 +1,18 @@
-<h1>Home</h1>
+<h1>{{ $ctrl.title }}</h1>
 <p>Hello, {{ $ctrl.user.name }}!</p>
 
-<div ng-repeat="items in $ctrl.vm.get('data')">
+<div ng-if="$ctrl.data.length"
+    ng-repeat="items in $ctrl.data"
+    ng-click="$ctrl.removeItem(items)">
   {{ items.title }}
 </div>
+
+<form novalidate name="form">
+  <input type="text"
+         name="theText"
+         ng-model="$ctrl.theText"
+         required>
+  <button
+      ng-disabled="form.theText.$invalid"
+      ng-click="$ctrl.add({title: $ctrl.theText})">Add</button>
+</form>

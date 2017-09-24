@@ -1,62 +1,74 @@
-/**
- * Controller
- */
-function decor(ref) {
-  window.Object.defineProperty(ref, 'map', {
-    value: new Map(),
-    writable: true,
-    enumerable: true,
-    configurable: true
-  });
+import template from './app.home.html!text';
+// import { Map } from 'immutable';
 
-  ref.map.set('test', 'Test');
+function decor(ref) {
+  ref.prototype.map = ref.prototype.map || new Map();
+  ref.prototype.map.set('test', 'Test');
 
   return ref;
 }
 
-function inject(ref) {
-  console.log(ref)
-
-  return ref;
+//region CtrlBase
+function make$Inject(args) {
+  this.constructor.$inject.map((item, index) => {
+    this[item] = args[index];
+  })
 }
 
 class CtrlBase {
-  constructor() {
-    /**
-     * View Model
-     * @type {Map}
-     * @private
-     */
-    this.vm = new Map();
+  constructor(...args) {
+    this.constructor.init.call(this, args)
+  }
+
+  static init(args) {
+    make$Inject.call(this, args)
+  }
+
+  $onDestroy() {
+    if(this.hasOwnProperty('onDestroy') && typeof this.onDestroy === 'function') {
+      onDestroy();
+    }
   }
 }
+//endregion
 
-@decor
 class HomeCtrl extends CtrlBase {
-  user = {
-    name: 'User name'
-  };
+  static $inject = [];
 
-  static $inject = [
-    '$http'
-  ];
-
-  constructor() {
-    super();
+  //region data get/set
+  get data() {
+    if(this.dataProvider && this.dataProvider.size) {
+      return Array.from(this.dataProvider.get('data'))
+    } else {
+      return [];
+    }
   }
+  set data(data) {
+    if(!data instanceof Set) {
+      throw new Error(`expect {Set} instead of {${typeof data}}`);
+    }
 
-  $onInit() {
-    const data = [
-      {title: '1'},
-      {title: '2'},
-      {title: '3'},
-      {title: '4'}
-    ]
+    data.forEach(item => this.dataProvider.get('data').add(item));
+  }
+  //endregion
 
-    this.vm.set('data', data);
+  theText = 'default'
+
+  add(itemData) {
+    this.addItem(itemData);
+    this.theText = '';
   }
 }
 
-HomeCtrl.$inject = ['$http'];
-
-export default HomeCtrl;
+export const HomeComponent = {
+  bindings: {
+    title: '@',
+    user: '<',
+    dataProvider: '<',
+    addItem: '<',
+    removeItem: '<',
+    onDestroy: '<'
+  },
+  template,
+  controller: HomeCtrl
+};

@@ -27,6 +27,7 @@
       "angular-core": "milenstanev/mstanev.angular.1.x.x.core@^0.0.3",
       "css": "systemjs/plugin-css@^0.1.36",
       "featureRoutes": "milenstanev/jspm.angular.lazyload-router@master",
+      "immutable": "npm:immutable@^3.8.1",
       "json": "systemjs/plugin-json@^0.3.0",
       "testModule": "milenstanev/jspm.angular.test-module@master",
       "text": "systemjs/plugin-text@^0.0.11"
