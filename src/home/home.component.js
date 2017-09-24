@@ -1,3 +1,6 @@
+/**
+ * Home Component description or something
+ */
 import template from './home.html!text';
 // import { Map } from 'immutable';
 
