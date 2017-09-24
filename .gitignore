@@ -13,3 +13,4 @@ package-lock.json
 yarn.lock
 !/src/bundle.js.map
 !/src/bundle.js
+/src/home/.idea/
