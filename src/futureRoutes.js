@@ -13,6 +13,6 @@ export const futureRoutes = [
     'type': 'load',
     'src': 'milenstanev/jspm.angular.test-module',
     'moduleExport': 'module:name:constant',
-    'moduleExportName': 'milenstanev/jspm.angular.test-module',
+    'moduleExportName': 'testModule',
   }
 ];

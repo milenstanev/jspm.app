@@ -26,7 +26,8 @@
         "systemjs-babel-build": "npm:systemjs-plugin-babel@0.0.25/systemjs-babel-browser.js"
       },
       paths: {
-        "homeComponent": "src/home/home.module.js"
+        "homeComponent": "src/home/home.module.js",
+        "layoutDefault": "src/layout-default/layout-default.module.js"
       }
     });
 
@@ -45,9 +46,10 @@
   </script>
 
 </head>
-<body ng-cloak>
-
-<div ui-view></div>
-
+<body>
+  <app ng-cloak></app>
+  <!--region TODO: To be created, this preloader should be on route level, it's about packages preloading runtime. -->
+  <app-preloader></app-preloader>
+  <!--endregion-->
 </body>
 </html>

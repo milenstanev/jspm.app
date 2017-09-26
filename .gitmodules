@@ -9,3 +9,7 @@
 [submodule "jspm.components/lazyload-router"]
 	path = jspm.components/lazyload-router
 	url = https://github.com/milenstanev/jspm.angular.lazyload-router.git
+
+[submodule "jspm.components/test-module"]
+	path = jspm.components/test-module
+	url = https://github.com/milenstanev/jspm.angular.test-module.git
