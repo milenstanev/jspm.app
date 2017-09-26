@@ -29,6 +29,7 @@
       "featureRoutes": "milenstanev/jspm.angular.lazyload-router@master",
       "immutable": "npm:immutable@^3.8.1",
       "json": "systemjs/plugin-json@^0.3.0",
+      "milenstanev/mstanev.angular.1.x.x.core": "develop",
       "testModule": "milenstanev/jspm.angular.test-module@master",
       "text": "systemjs/plugin-text@^0.0.11"
     },

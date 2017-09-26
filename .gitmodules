@@ -1,15 +1,15 @@
 [submodule "jspm.components/core"]
 	path = jspm.components/core
 	url = https://github.com/milenstanev/mstanev.angular.1.x.x.core.git
+
 [submodule "jspm.components/template"]
 	path = jspm.components/template
 	url = https://github.com/milenstanev/jspm.angular.template.git
-[submodule "test-module"]
-	path = test-module
-	url = https://github.com/milenstanev/jspm.angular.lazyload-router.git
+
 [submodule "jspm.components/test-module"]
 	path = jspm.components/test-module
-	url = https://github.com/milenstanev/jspm.angular.lazyload-router.git
+	url = https://github.com/milenstanev/jspm.angular.test-module.git
+
 [submodule "jspm.components/lazyload-router"]
 	path = jspm.components/lazyload-router
 	url = https://github.com/milenstanev/jspm.angular.lazyload-router.git
