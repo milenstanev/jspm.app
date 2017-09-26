@@ -11,8 +11,8 @@ export const futureRoutes = [
     'stateName': 'test',
     'urlPrefix': '/test',
     'type': 'load',
-    'src': 'testModule',
+    'src': 'milenstanev/jspm.angular.test-module',
     'moduleExport': 'module:name:constant',
-    'moduleExportName': 'testModule',
+    'moduleExportName': 'milenstanev/jspm.angular.test-module',
   }
 ];

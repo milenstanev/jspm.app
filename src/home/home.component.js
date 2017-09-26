@@ -2,7 +2,7 @@
  * Home Component description or something
  */
 import template from './home.html!text';
-import { CtrlBase } from 'angular-core';
+import { CtrlBase } from 'milenstanev/mstanev.angular.1.x.x.core';
 
 function decor(ref) {
   ref.prototype.map = ref.prototype.map || new Map();

@@ -1,4 +1,4 @@
-import { angular, CoreModule } from 'angular-core';
+import { angular, CoreModule } from 'milenstanev/mstanev.angular.1.x.x.core';
 import { appLazyLoadRouterModule, futureRoutesCollection } from 'featureRoutes';
 
 import { futureRoutes } from './futureRoutes';

@@ -1116,37 +1116,37 @@ System.registerDynamic("github:angular/bower-angular-animate@1.6.6/angular-anima
              </div>
            </file>
            <file name="animations.css">
-      
+
             .container.ng-enter,
             .container.ng-leave {
               transition: all ease 1.5s;
             }
-      
+
             .container.ng-enter,
             .container.ng-leave-active {
               opacity: 0;
             }
-      
+
             .container.ng-leave,
             .container.ng-enter-active {
               opacity: 1;
             }
-      
+
             .item {
               background: firebrick;
               color: #FFF;
               margin-bottom: 10px;
             }
-      
+
             .item.ng-enter,
             .item.ng-leave {
               transition: transform 1.5s ease;
             }
-      
+
             .item.ng-enter {
               transform: translateX(50px);
             }
-      
+
             .item.ng-enter-active {
               transform: translateX(0);
             }
@@ -4570,7 +4570,7 @@ System.registerDynamic("github:angular/bower-angular-animate@1.6.6/angular-anima
                   function ProfileController($rootScope, $routeParams) {
                 var index = parseInt($routeParams.id, 10);
                 var record = $rootScope.records[index - 1];
-      
+
                 this.title = record.title;
                 this.id = record.id;
               }]);
@@ -4892,21 +4892,21 @@ System.registerDynamic("github:angular/bower-angular-sanitize@1.6.6/angular-sani
              expect(element(by.css('#bind-html-with-sanitize div')).getAttribute('innerHTML')).
                toBe('<p>an html\n<em>click here</em>\nsnippet</p>');
            });
-      
+
            it('should inline raw snippet if bound to a trusted value', function() {
              expect(element(by.css('#bind-html-with-trust div')).getAttribute('innerHTML')).
                toBe("<p style=\"color:blue\">an html\n" +
                     "<em onmouseover=\"this.textContent='PWN3D!'\">click here</em>\n" +
                     "snippet</p>");
            });
-      
+
            it('should escape snippet without any filter', function() {
              expect(element(by.css('#bind-default div')).getAttribute('innerHTML')).
                toBe("&lt;p style=\"color:blue\"&gt;an html\n" +
                     "&lt;em onmouseover=\"this.textContent='PWN3D!'\"&gt;click here&lt;/em&gt;\n" +
                     "snippet&lt;/p&gt;");
            });
-      
+
            it('should update', function() {
              element(by.model('snippet')).clear();
              element(by.model('snippet')).sendKeys('new <b onclick="alert(1)">text</b>');
@@ -5433,14 +5433,14 @@ System.registerDynamic("github:angular/bower-angular-sanitize@1.6.6/angular-sani
                         'another@somewhere.org, and one more: ftp://127.0.0.1/.');
                expect(element.all(by.css('#linky-filter a')).count()).toEqual(4);
              });
-      
+
              it('should not linkify snippet without the linky filter', function() {
                expect(element(by.id('escaped-html')).element(by.binding('snippet')).getText()).
                    toBe('Pretty text with some links: http://angularjs.org/, mailto:us@somewhere.org, ' +
                         'another@somewhere.org, and one more: ftp://127.0.0.1/.');
                expect(element.all(by.css('#escaped-html a')).count()).toEqual(0);
              });
-      
+
              it('should update', function() {
                element(by.model('snippet')).clear();
                element(by.model('snippet')).sendKeys('new http://link.');
@@ -5450,14 +5450,14 @@ System.registerDynamic("github:angular/bower-angular-sanitize@1.6.6/angular-sani
                expect(element(by.id('escaped-html')).element(by.binding('snippet')).getText())
                    .toBe('new http://link.');
              });
-      
+
              it('should work with the target property', function() {
               expect(element(by.id('linky-target')).
                   element(by.binding("snippetWithSingleURL | linky:'_blank'")).getText()).
                   toBe('http://angularjs.org/');
               expect(element(by.css('#linky-target a')).getAttribute('target')).toEqual('_blank');
              });
-      
+
              it('should optionally add custom attributes', function() {
               expect(element(by.id('linky-custom-attributes')).
                   element(by.binding("snippetWithSingleURL | linky:'_self':{rel: 'nofollow'}")).getText()).
@@ -5688,7 +5688,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
         uid,
         REGEX_STRING_REGEXP,
         VALIDITY_STATE_PROPERTY,
-      
+
         lowercase,
         uppercase,
         manualLowercase,
@@ -5764,7 +5764,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
         hasOwnProperty,
         createMap,
         stringify,
-      
+
         NODE_TYPE_ELEMENT,
         NODE_TYPE_ATTRIBUTE,
         NODE_TYPE_TEXT,
@@ -6173,12 +6173,12 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
          function transformer(transformationFn, value) {
            return (transformationFn || angular.identity)(value);
          };
-      
+
          // E.g.
          function getResult(fn, input) {
            return (fn || angular.identity)(input);
          };
-      
+
          getResult(function(n) { return n * 2; }, 21);   // returns 42
          getResult(null, 21);                            // returns 21
          getResult(undefined, 21);                       // returns 21
@@ -6531,17 +6531,17 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
               module('copyExample', []).
               controller('ExampleController', ['$scope', function($scope) {
                 $scope.master = {};
-      
+
                 $scope.reset = function() {
                   // Example with 1 argument
                   $scope.user = angular.copy($scope.master);
                 };
-      
+
                 $scope.update = function(user) {
                   // Example with 2 arguments
                   angular.copy(user, $scope.master);
                 };
-      
+
                 $scope.reset();
               }]);
           </file>
@@ -6731,11 +6731,11 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                 <h3>User 1</h3>
                 Name: <input type="text" ng-model="user1.name">
                 Age: <input type="number" ng-model="user1.age">
-      
+
                 <h3>User 2</h3>
                 Name: <input type="text" ng-model="user2.name">
                 Age: <input type="number" ng-model="user2.age">
-      
+
                 <div>
                   <br/>
                   <input type="button" value="Compare" ng-click="compare()">
@@ -7264,26 +7264,26 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
          <div ng-app="ngAppStrictDemo" ng-strict-di>
              <div ng-controller="GoodController1">
                  I can add: {{a}} + {{b}} =  {{ a+b }}
-      
+
                  <p>This renders because the controller does not fail to
                     instantiate, by using explicit annotation style (see
                     script.js for details)
                  </p>
              </div>
-      
+
              <div ng-controller="GoodController2">
                  Name: <input ng-model="name"><br />
                  Hello, {{name}}!
-      
+
                  <p>This renders because the controller does not fail to
                     instantiate, by using explicit annotation style
                     (see script.js for details)
                  </p>
              </div>
-      
+
              <div ng-controller="BadController">
                  I can add: {{a}} + {{b}} =  {{ a+b }}
-      
+
                  <p>The controller could not be instantiated, due to relying
                     on automatic function annotations (which are disabled in
                     strict mode). As such, the content of this section is not
@@ -8170,9 +8170,9 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
 
       /* global angularModule: true,
         version: true,
-      
+
         $CompileProvider,
-      
+
         htmlAnchorDirective,
         inputDirective,
         inputDirective,
@@ -8219,7 +8219,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
         ngModelOptionsDirective,
         ngAttributeAliasDirectives,
         ngEventDirectives,
-      
+
         $AnchorScrollProvider,
         $AnimateProvider,
         $CoreAnimateCssProvider,
@@ -10039,7 +10039,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
        *     {@link auto.$injector#instantiate $injector.instantiate()}, then treated as `object`.
        *
        * @returns {Object} registered provider instance
-      
+
        * @example
        *
        * The following example shows how to create a simple event tracking service and register it using
@@ -12190,14 +12190,14 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                <input ng-model="newCacheKey" placeholder="Key">
                <input ng-model="newCacheValue" placeholder="Value">
                <button ng-click="put(newCacheKey, newCacheValue)">Cache</button>
-      
+
                <p ng-if="keys.length">Cached Values</p>
                <div ng-repeat="key in keys">
                  <span ng-bind="key"></span>
                  <span>: </span>
                  <b ng-bind="cache.get(key)"></b>
                </div>
-      
+
                <p>Cache Info</p>
                <div ng-repeat="(key, value) in cache.info()">
                  <span ng-bind="key"></span>
@@ -13089,7 +13089,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
        * apply to all cloned DOM nodes within the compile function. Specifically, DOM listener registration
        * should be done in a linking function rather than in a compile function.
        * </div>
-      
+
        * <div class="alert alert-warning">
        * **Note:** The compile function cannot handle directives that recursively use themselves in their
        * own templates or compile functions. Compiling these directives results in an infinite loop and
@@ -13105,7 +13105,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
        *   e.g. does not know about the right outer scope. Please use the transclude function that is passed
        *   to the link function instead.
        * </div>
-      
+
        * A compile function can have a return value which can be either a function or an object.
        *
        * * returning a (post-link) function - is equivalent to registering the linking function via the
@@ -13375,7 +13375,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                       // when the 'compile' expression changes
                       // assign it into the current DOM
                       element.html(value);
-      
+
                       // compile the new DOM and link it to the current
                       // scope.
                       // NOTE: we only compile .childNodes so that
@@ -13409,7 +13409,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
            });
          </file>
        </example>
-      
+
        *
        *
        * @param {string|DOMElement} element Element or HTML string to compile into a template function.
@@ -18122,13 +18122,13 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
       <file name="index.html">
       <script>
         var customInterpolationApp = angular.module('customInterpolationApp', []);
-      
+
         customInterpolationApp.config(function($interpolateProvider) {
           $interpolateProvider.startSymbol('//');
           $interpolateProvider.endSymbol('//');
         });
-      
-      
+
+
         customInterpolationApp.controller('DemoController', function() {
             this.label = "This binding is brought you by // interpolation symbols.";
         });
@@ -25902,7 +25902,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
               <h3>{{ filteredText }}</h3>
              </div>
            </file>
-      
+
            <file name="script.js">
             angular.module('filterExample', [])
             .controller('MainCtrl', function($scope, $filter) {
@@ -26054,7 +26054,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                                       {name:'Adam', phone:'555-5678'},
                                       {name:'Julie', phone:'555-8765'},
                                       {name:'Juliette', phone:'555-5678'}]"></div>
-      
+
              <label>Search: <input ng-model="searchText"></label>
              <table id="searchTextResults">
                <tr><th>Name</th><th>Phone</th></tr>
@@ -26084,18 +26084,18 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                  });
                });
              };
-      
+
              it('should search across all fields when filtering with a string', function() {
                var searchText = element(by.model('searchText'));
                searchText.clear();
                searchText.sendKeys('m');
                expectFriendNames(['Mary', 'Mike', 'Adam'], 'friend');
-      
+
                searchText.clear();
                searchText.sendKeys('76');
                expectFriendNames(['John', 'Julie'], 'friend');
              });
-      
+
              it('should search in specific fields when filtering with a predicate object', function() {
                var searchAny = element(by.model('search.$'));
                searchAny.clear();
@@ -26359,7 +26359,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                expect(element(by.binding('val | number:0')).getText()).toBe('1,235');
                expect(element(by.binding('-val | number:4')).getText()).toBe('-1,234.5679');
              });
-      
+
              it('should update', function() {
                element(by.model('val')).clear();
                element(by.model('val')).sendKeys('3374.333');
@@ -27027,7 +27027,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
              var limitedNumbers = element(by.binding('numbers | limitTo:numLimit'));
              var limitedLetters = element(by.binding('letters | limitTo:letterLimit'));
              var limitedLongNumber = element(by.binding('longNumber | limitTo:longNumberLimit'));
-      
+
              it('should limit the number array to first three items', function() {
                expect(numLimitInput.getAttribute('value')).toBe('3');
                expect(letterLimitInput.getAttribute('value')).toBe('3');
@@ -27036,7 +27036,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                expect(limitedLetters.getText()).toEqual('Output letters: abc');
                expect(limitedLongNumber.getText()).toEqual('Output long number: 234');
              });
-      
+
              // There is a bug in safari and protractor that doesn't like the minus key
              // it('should update the output when -3 is entered', function() {
              //   numLimitInput.clear();
@@ -27049,7 +27049,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
              //   expect(limitedLetters.getText()).toEqual('Output letters: ghi');
              //   expect(limitedLongNumber.getText()).toEqual('Output long number: 342');
              // });
-      
+
              it('should not exceed the maximum size of input array', function() {
                numLimitInput.clear();
                numLimitInput.sendKeys('100');
@@ -27260,7 +27260,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
              .friends {
                border-collapse: collapse;
              }
-      
+
              .friends th {
                border-bottom: 1px solid;
              }
@@ -27275,7 +27275,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
            <file name="protractor.js" type="protractor">
              // Element locators
              var names = element.all(by.repeater('friends').column('friend.name'));
-      
+
              it('should sort friends by age in reverse order', function() {
                expect(names.get(0).getText()).toBe('Adam');
                expect(names.get(1).getText()).toBe('Julie');
@@ -27333,11 +27333,11 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                    {name: 'Adam',   phone: '555-5678',  age: 35},
                    {name: 'Julie',  phone: '555-8765',  age: 29}
                  ];
-      
+
                  $scope.propertyName = 'age';
                  $scope.reverse = true;
                  $scope.friends = friends;
-      
+
                  $scope.sortBy = function(propertyName) {
                    $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
                    $scope.propertyName = propertyName;
@@ -27348,7 +27348,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
              .friends {
                border-collapse: collapse;
              }
-      
+
              .friends th {
                border-bottom: 1px solid;
              }
@@ -27359,7 +27359,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
              .friends td:first-child, .friends th:first-child {
                border-left: none;
              }
-      
+
              .sortorder:after {
                content: '\25b2';   // BLACK UP-POINTING TRIANGLE
              }
@@ -27375,41 +27375,41 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
              var ageHeader = element(by.partialButtonText('Age'));
              var firstName = element(by.repeater('friends').column('friend.name').row(0));
              var lastName = element(by.repeater('friends').column('friend.name').row(4));
-      
+
              it('should sort friends by some property, when clicking on the column header', function() {
                expect(firstName.getText()).toBe('Adam');
                expect(lastName.getText()).toBe('John');
-      
+
                phoneHeader.click();
                expect(firstName.getText()).toBe('John');
                expect(lastName.getText()).toBe('Mary');
-      
+
                nameHeader.click();
                expect(firstName.getText()).toBe('Adam');
                expect(lastName.getText()).toBe('Mike');
-      
+
                ageHeader.click();
                expect(firstName.getText()).toBe('John');
                expect(lastName.getText()).toBe('Adam');
              });
-      
+
              it('should sort friends in reverse order, when clicking on the same column', function() {
                expect(firstName.getText()).toBe('Adam');
                expect(lastName.getText()).toBe('John');
-      
+
                ageHeader.click();
                expect(firstName.getText()).toBe('John');
                expect(lastName.getText()).toBe('Adam');
-      
+
                ageHeader.click();
                expect(firstName.getText()).toBe('Adam');
                expect(lastName.getText()).toBe('John');
              });
-      
+
              it('should restore the original order, when clicking "Set to unsorted"', function() {
                expect(firstName.getText()).toBe('Adam');
                expect(lastName.getText()).toBe('John');
-      
+
                unsortButton.click();
                expect(firstName.getText()).toBe('John');
                expect(lastName.getText()).toBe('Julie');
@@ -27465,11 +27465,11 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                    {name: 'Adam',   phone: '555-5678',  age: 35},
                    {name: 'Julie',  phone: '555-8765',  age: 29}
                  ];
-      
+
                  $scope.propertyName = 'age';
                  $scope.reverse = true;
                  $scope.friends = orderBy(friends, $scope.propertyName, $scope.reverse);
-      
+
                  $scope.sortBy = function(propertyName) {
                    $scope.reverse = (propertyName !== null && $scope.propertyName === propertyName)
                        ? !$scope.reverse : false;
@@ -27482,7 +27482,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
              .friends {
                border-collapse: collapse;
              }
-      
+
              .friends th {
                border-bottom: 1px solid;
              }
@@ -27493,7 +27493,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
              .friends td:first-child, .friends th:first-child {
                border-left: none;
              }
-      
+
              .sortorder:after {
                content: '\25b2';   // BLACK UP-POINTING TRIANGLE
              }
@@ -27509,41 +27509,41 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
              var ageHeader = element(by.partialButtonText('Age'));
              var firstName = element(by.repeater('friends').column('friend.name').row(0));
              var lastName = element(by.repeater('friends').column('friend.name').row(4));
-      
+
              it('should sort friends by some property, when clicking on the column header', function() {
                expect(firstName.getText()).toBe('Adam');
                expect(lastName.getText()).toBe('John');
-      
+
                phoneHeader.click();
                expect(firstName.getText()).toBe('John');
                expect(lastName.getText()).toBe('Mary');
-      
+
                nameHeader.click();
                expect(firstName.getText()).toBe('Adam');
                expect(lastName.getText()).toBe('Mike');
-      
+
                ageHeader.click();
                expect(firstName.getText()).toBe('John');
                expect(lastName.getText()).toBe('Adam');
              });
-      
+
              it('should sort friends in reverse order, when clicking on the same column', function() {
                expect(firstName.getText()).toBe('Adam');
                expect(lastName.getText()).toBe('John');
-      
+
                ageHeader.click();
                expect(firstName.getText()).toBe('John');
                expect(lastName.getText()).toBe('Adam');
-      
+
                ageHeader.click();
                expect(firstName.getText()).toBe('Adam');
                expect(lastName.getText()).toBe('John');
              });
-      
+
              it('should restore the original order, when clicking "Set to unsorted"', function() {
                expect(firstName.getText()).toBe('Adam');
                expect(lastName.getText()).toBe('John');
-      
+
                unsortButton.click();
                expect(firstName.getText()).toBe('John');
                expect(lastName.getText()).toBe('Julie');
@@ -27601,13 +27601,13 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                    {name: 'Adam',   favoriteLetter: 'H'},
                    {name: 'Julie',  favoriteLetter: 'Z'}
                  ];
-      
+
                  $scope.localeSensitiveComparator = function(v1, v2) {
                    // If we don't get strings, just compare by index
                    if (v1.type !== 'string' || v2.type !== 'string') {
                      return (v1.index < v2.index) ? -1 : 1;
                    }
-      
+
                    // Compare strings alphabetically, taking locale into account
                    return v1.value.localeCompare(v2.value);
                  };
@@ -27618,11 +27618,11 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                display: inline-block;
                margin: 0 30px;
              }
-      
+
              .friends {
                border-collapse: collapse;
              }
-      
+
              .friends th {
                border-bottom: 1px solid;
              }
@@ -27638,7 +27638,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
              // Element locators
              var container = element(by.css('.custom-comparator'));
              var names = container.all(by.repeater('friends').column('friend.name'));
-      
+
              it('should sort friends by favorite letter (in correct alphabetical order)', function() {
                expect(names.get(0).getText()).toBe('John');
                expect(names.get(1).getText()).toBe('Adam');
@@ -27891,47 +27891,47 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                 expect(element(by.model('value')).getAttribute('value')).toEqual('1');
                 expect(element(by.id('link-1')).getAttribute('href')).toBe('');
               });
-      
+
               it('should execute ng-click but not reload when href empty string', function() {
                 element(by.id('link-2')).click();
                 expect(element(by.model('value')).getAttribute('value')).toEqual('2');
                 expect(element(by.id('link-2')).getAttribute('href')).toBe('');
               });
-      
+
               it('should execute ng-click and change url when ng-href specified', function() {
                 expect(element(by.id('link-3')).getAttribute('href')).toMatch(/\/123$/);
-      
+
                 element(by.id('link-3')).click();
-      
+
                 // At this point, we navigate away from an Angular page, so we need
                 // to use browser.driver to get the base webdriver.
-      
+
                 browser.wait(function() {
                   return browser.driver.getCurrentUrl().then(function(url) {
                     return url.match(/\/123$/);
                   });
                 }, 5000, 'page should navigate to /123');
               });
-      
+
               it('should execute ng-click but not reload when href empty string and name specified', function() {
                 element(by.id('link-4')).click();
                 expect(element(by.model('value')).getAttribute('value')).toEqual('4');
                 expect(element(by.id('link-4')).getAttribute('href')).toBe('');
               });
-      
+
               it('should execute ng-click but not reload when no href but name specified', function() {
                 element(by.id('link-5')).click();
                 expect(element(by.model('value')).getAttribute('value')).toEqual('5');
                 expect(element(by.id('link-5')).getAttribute('href')).toBe(null);
               });
-      
+
               it('should only change url when only ng-href', function() {
                 element(by.model('value')).clear();
                 element(by.model('value')).sendKeys('6');
                 expect(element(by.id('link-6')).getAttribute('href')).toMatch(/\/6$/);
-      
+
                 element(by.id('link-6')).click();
-      
+
                 // At this point, we navigate away from an Angular page, so we need
                 // to use browser.driver to get the base webdriver.
                 browser.wait(function() {
@@ -30913,45 +30913,45 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
               var formValid = element(by.binding('myForm.$valid'));
               var userNameInput = element(by.model('user.name'));
               var userLastInput = element(by.model('user.last'));
-      
+
               it('should initialize to model', function() {
                 expect(user.getText()).toContain('{"name":"guest","last":"visitor"}');
                 expect(userNameValid.getText()).toContain('true');
                 expect(formValid.getText()).toContain('true');
               });
-      
+
               it('should be invalid if empty when required', function() {
                 userNameInput.clear();
                 userNameInput.sendKeys('');
-      
+
                 expect(user.getText()).toContain('{"last":"visitor"}');
                 expect(userNameValid.getText()).toContain('false');
                 expect(formValid.getText()).toContain('false');
               });
-      
+
               it('should be valid if empty when min length is set', function() {
                 userLastInput.clear();
                 userLastInput.sendKeys('');
-      
+
                 expect(user.getText()).toContain('{"name":"guest","last":""}');
                 expect(lastNameValid.getText()).toContain('true');
                 expect(formValid.getText()).toContain('true');
               });
-      
+
               it('should be invalid if less than required min length', function() {
                 userLastInput.clear();
                 userLastInput.sendKeys('xx');
-      
+
                 expect(user.getText()).toContain('{"name":"guest"}');
                 expect(lastNameValid.getText()).toContain('false');
                 expect(lastNameError.getText()).toContain('minlength');
                 expect(formValid.getText()).toContain('false');
               });
-      
+
               it('should be invalid if longer than max length', function() {
                 userLastInput.clear();
                 userLastInput.sendKeys('some ridiculously long name');
-      
+
                 expect(user.getText()).toContain('{"name":"guest"}');
                 expect(lastNameValid.getText()).toContain('false');
                 expect(lastNameError.getText()).toContain('maxlength');
@@ -31019,7 +31019,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
             </file>
             <file name="protractor.js" type="protractor">
               var favorite = element(by.binding('my.favorite'));
-      
+
               it('should initialize to model', function() {
                 expect(favorite.getText()).toContain('unicorns');
               });
@@ -31107,7 +31107,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
            <file name="protractor.js" type="protractor">
              it('should check ng-bind', function() {
                var nameInput = element(by.model('name'));
-      
+
                expect(element(by.binding('name')).getText()).toBe('Whirled');
                nameInput.clear();
                nameInput.sendKeys('world');
@@ -31170,14 +31170,14 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                var salutationElem = element(by.binding('salutation'));
                var salutationInput = element(by.model('salutation'));
                var nameInput = element(by.model('name'));
-      
+
                expect(salutationElem.getText()).toBe('Hello World!');
-      
+
                salutationInput.clear();
                salutationInput.sendKeys('Greetings');
                nameInput.clear();
                nameInput.sendKeys('user');
-      
+
                expect(salutationElem.getText()).toBe('Greetings user!');
              });
            </file>
@@ -31221,14 +31221,14 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
        * @param {expression} ngBindHtml {@link guide/expression Expression} to evaluate.
        *
        * @example
-      
+
          <example module="bindHtmlExample" deps="angular-sanitize.js" name="ng-bind-html">
            <file name="index.html">
              <div ng-controller="ExampleController">
               <p ng-bind-html="myHTML"></p>
              </div>
            </file>
-      
+
            <file name="script.js">
              angular.module('bindHtmlExample', ['ngSanitize'])
                .controller('ExampleController', ['$scope', function($scope) {
@@ -31237,7 +31237,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                     '<a href="#">links!</a> and other <em>stuff</em>';
                }]);
            </file>
-      
+
            <file name="protractor.js" type="protractor">
              it('should check ng-bind-html', function() {
                expect(element(by.binding('myHTML')).getText()).toBe(
@@ -31330,7 +31330,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
        *
        *     it('should not evaluate the expression if changing from model', function() {
        *       element(by.id('ng-change-example2')).click();
-      
+
        *       expect(counter.getText()).toContain('0');
        *       expect(debug.getText()).toContain('true');
        *     });
@@ -31627,26 +31627,26 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
            </file>
            <file name="protractor.js" type="protractor">
              var ps = element.all(by.css('p'));
-      
+
              it('should let you toggle the class', function() {
-      
+
                expect(ps.first().getAttribute('class')).not.toMatch(/bold/);
                expect(ps.first().getAttribute('class')).not.toMatch(/has-error/);
-      
+
                element(by.model('important')).click();
                expect(ps.first().getAttribute('class')).toMatch(/bold/);
-      
+
                element(by.model('error')).click();
                expect(ps.first().getAttribute('class')).toMatch(/has-error/);
              });
-      
+
              it('should let you toggle string example', function() {
                expect(ps.get(1).getAttribute('class')).toBe('');
                element(by.model('style')).clear();
                element(by.model('style')).sendKeys('red');
                expect(ps.get(1).getAttribute('class')).toBe('red');
              });
-      
+
              it('array example should have 3 classes', function() {
                expect(ps.get(2).getAttribute('class')).toBe('');
                element(by.model('style1')).sendKeys('bold');
@@ -31654,7 +31654,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                element(by.model('style3')).sendKeys('red');
                expect(ps.get(2).getAttribute('class')).toBe('bold strike red');
              });
-      
+
              it('array with map example should have 2 classes', function() {
                expect(ps.last().getAttribute('class')).toBe('');
                element(by.model('style4')).sendKeys('bold');
@@ -31663,11 +31663,11 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
              });
            </file>
          </example>
-      
+
          ## Animations
-      
+
          The example below demonstrates how to perform animations using ngClass.
-      
+
          <example module="ngAnimate" deps="angular-animate.js" animations="true" name="ng-class">
            <file name="index.html">
             <input id="setbtn" type="button" value="set" ng-click="myVar='my-class'">
@@ -31679,7 +31679,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
              .base-class {
                transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
              }
-      
+
              .base-class.my-class {
                color: red;
                font-size:3em;
@@ -31689,21 +31689,21 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
              it('should check ng-class', function() {
                expect(element(by.css('.base-class')).getAttribute('class')).not.
                  toMatch(/my-class/);
-      
+
                element(by.id('setbtn')).click();
-      
+
                expect(element(by.css('.base-class')).getAttribute('class')).
                  toMatch(/my-class/);
-      
+
                element(by.id('clearbtn')).click();
-      
+
                expect(element(by.css('.base-class')).getAttribute('class')).not.
                  toMatch(/my-class/);
              });
            </file>
          </example>
-      
-      
+
+
          ## ngClass and pre-existing CSS3 Transitions/Animations
          The ngClass directive still supports CSS3 Transitions/Animations even if they do not follow the ngAnimate CSS naming structure.
          Upon animation ngAnimate will apply supplementary CSS classes to track the start and end of an animation, but this will not hinder
@@ -32094,7 +32094,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
        *    });
        *  </file>
        *</example>
-      
+
        */
       var ngControllerDirective = [function () {
         return {
@@ -32202,7 +32202,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                       {{ctrl.counter}}
                     </span>
                   </div>
-      
+
                   <div>
                     <button ng-click="ctrl.evil()" id="evil">Evil</button>
                     <span id="evilError">
@@ -32229,12 +32229,12 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
               </file>
               <file name="protractor.js" type="protractor">
                 var util, webdriver;
-      
+
                 var incBtn = element(by.id('inc'));
                 var counter = element(by.id('counter'));
                 var evilBtn = element(by.id('evil'));
                 var evilError = element(by.id('evilError'));
-      
+
                 function getAndClearSevereErrors() {
                   return browser.manage().logs().get('browser').then(function(browserLog) {
                     return browserLog.filter(function(logEntry) {
@@ -32242,11 +32242,11 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                     });
                   });
                 }
-      
+
                 function clearErrors() {
                   getAndClearSevereErrors();
                 }
-      
+
                 function expectNoErrors() {
                   getAndClearSevereErrors().then(function(filteredLog) {
                     expect(filteredLog.length).toEqual(0);
@@ -32255,7 +32255,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                     }
                   });
                 }
-      
+
                 function expectError(regex) {
                   getAndClearSevereErrors().then(function(filteredLog) {
                     var found = false;
@@ -32269,19 +32269,19 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                     }
                   });
                 }
-      
+
                 beforeEach(function() {
                   util = require('util');
                   webdriver = require('selenium-webdriver');
                 });
-      
+
                 // For now, we only test on Chrome,
                 // as Safari does not load the page with Protractor's injected scripts,
                 // and Firefox webdriver always disables content security policy (#6358)
                 if (browser.params.browser !== 'chrome') {
                   return;
                 }
-      
+
                 it('should not report errors when the page is loaded', function() {
                   // clear errors so we are not dependent on previous tests
                   clearErrors();
@@ -32292,14 +32292,14 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                   });
                   expectNoErrors();
                 });
-      
+
                 it('should evaluate expressions', function() {
                   expect(counter.getText()).toEqual('0');
                   incBtn.click();
                   expect(counter.getText()).toEqual('1');
                   expectNoErrors();
                 });
-      
+
                 it('should throw and report an error when using "eval"', function() {
                   evilBtn.click();
                   expect(evilError.getText()).toMatch(/Content Security Policy/);
@@ -32585,7 +32585,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
            <file name="index.html">
              <p>Typing in the input box below updates the key count</p>
              <input ng-keyup="count = count + 1" ng-init="count=0"> key up count: {{count}}
-      
+
              <p>Typing in the input box below updates the keycode</p>
              <input ng-keyup="event=$event">
              <p>event keyCode: {{ event.keyCode }}</p>
@@ -32846,16 +32846,16 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
               border:1px solid black;
               padding:10px;
             }
-      
+
             .animate-if.ng-enter, .animate-if.ng-leave {
               transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
             }
-      
+
             .animate-if.ng-enter,
             .animate-if.ng-leave.ng-leave-active {
               opacity:0;
             }
-      
+
             .animate-if.ng-leave,
             .animate-if.ng-enter.ng-enter-active {
               opacity:1;
@@ -32998,14 +32998,14 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
               height:40px;
               overflow:hidden;
             }
-      
+
             .slide-animate {
               padding:10px;
             }
-      
+
             .slide-animate.ng-enter, .slide-animate.ng-leave {
               transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-      
+
               position:absolute;
               top:0;
               left:0;
@@ -33014,14 +33014,14 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
               display:block;
               padding:10px;
             }
-      
+
             .slide-animate.ng-enter {
               top:-50px;
             }
             .slide-animate.ng-enter.ng-enter-active {
               top:0;
             }
-      
+
             .slide-animate.ng-leave {
               top:0;
             }
@@ -33032,11 +33032,11 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
           <file name="protractor.js" type="protractor">
             var templateSelect = element(by.model('template'));
             var includeElem = element(by.css('[ng-include]'));
-      
+
             it('should load template1.html', function() {
               expect(includeElem.getText()).toMatch(/Content of template1.html/);
             });
-      
+
             it('should load template2.html', function() {
               if (browser.params.browser === 'firefox') {
                 // Firefox can't handle using selects
@@ -33047,7 +33047,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
               templateSelect.all(by.css('option')).get(2).click();
               expect(includeElem.getText()).toMatch(/Content of template2.html/);
             });
-      
+
             it('should change to blank', function() {
               if (browser.params.browser === 'firefox') {
                 // Firefox can't handle using selects
@@ -33443,19 +33443,19 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
           `$viewValue`} from the DOM, usually via user input.
           See {@link ngModel.NgModelController#$setViewValue `$setViewValue()`} for a detailed lifecycle explanation.
           Note that the `$parsers` are not called when the bound ngModel expression changes programmatically.
-      
+
         The functions are called in array order, each passing
           its return value through to the next. The last return value is forwarded to the
           {@link ngModel.NgModelController#$validators `$validators`} collection.
-      
+
         Parsers are used to sanitize / convert the {@link ngModel.NgModelController#$viewValue
           `$viewValue`}.
-      
+
         Returning `undefined` from a parser means a parse error occurred. In that case,
           no {@link ngModel.NgModelController#$validators `$validators`} will run and the `ngModel`
           will be set to `undefined` unless {@link ngModelOptions `ngModelOptions.allowInvalid`}
           is set to `true`. The parse error is stored in `ngModel.$error.parse`.
-      
+
         This simple example shows a parser that would convert text input value to lowercase:
        * ```js
        * function parse(value) {
@@ -33465,20 +33465,20 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
        * }
        * ngModelController.$parsers.push(parse);
        * ```
-      
+
        *
        * @property {Array.<Function>} $formatters Array of functions to execute, as a pipeline, whenever
           the bound ngModel expression changes programmatically. The `$formatters` are not called when the
           value of the control is changed by user interaction.
-      
+
         Formatters are used to format / convert the {@link ngModel.NgModelController#$modelValue
           `$modelValue`} for display in the control.
-      
+
         The functions are called in reverse array order, each passing the value through to the
           next. The last return value is used as the actual DOM value.
-      
+
         This simple example shows a formatter that would convert the model value to uppercase:
-      
+
        * ```js
        * function format(value) {
        *   if (value) {
@@ -33580,11 +33580,11 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
               background-color: white;
               min-height: 20px;
             }
-      
+
             .ng-invalid {
               border: 1px solid red;
             }
-      
+
           </file>
           <file name="script.js">
             angular.module('customControl', ['ngSanitize']).
@@ -33594,18 +33594,18 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                   require: '?ngModel', // get a hold of NgModelController
                   link: function(scope, element, attrs, ngModel) {
                     if (!ngModel) return; // do nothing if no ng-model
-      
+
                     // Specify how UI should be updated
                     ngModel.$render = function() {
                       element.html($sce.getTrustedHtml(ngModel.$viewValue || ''));
                     };
-      
+
                     // Listen for change events to enable binding
                     element.on('blur keyup change', function() {
                       scope.$evalAsync(read);
                     });
                     read(); // initialize
-      
+
                     // Write data to the model
                     function read() {
                       var html = element.html();
@@ -33640,9 +33640,9 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
             }
             var contentEditable = element(by.css('[contenteditable]'));
             var content = 'Change me!';
-      
+
             expect(contentEditable.getText()).toEqual(content);
-      
+
             contentEditable.clear();
             contentEditable.sendKeys(protractor.Key.BACK_SPACE);
             expect(contentEditable.getText()).toEqual('');
@@ -35202,20 +35202,20 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                     <option value="">-- choose color --</option>
                   </select>
                 </span></label><br/>
-      
+
                 <label>Color grouped by shade:
                   <select ng-model="myColor" ng-options="color.name group by color.shade for color in colors">
                   </select>
                 </label><br/>
-      
+
                 <label>Color grouped by shade, with some disabled:
                   <select ng-model="myColor"
                         ng-options="color.name group by color.shade disable when color.notAnOption for color in colors">
                   </select>
                 </label><br/>
-      
-      
-      
+
+
+
                 Select <button ng-click="myColor = { name:'not in list', shade: 'other' }">bogus</button>.
                 <br/>
                 <hr/>
@@ -35818,7 +35818,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                 <label>Person 1:<input type="text" ng-model="person1" value="Igor" /></label><br/>
                 <label>Person 2:<input type="text" ng-model="person2" value="Misko" /></label><br/>
                 <label>Number of People:<input type="text" ng-model="personCount" value="1" /></label><br/>
-      
+
                 <!--- Example with simple pluralization rules for en locale --->
                 Without Offset:
                 <ng-pluralize count="personCount"
@@ -35826,7 +35826,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                                      'one': '1 person is viewing.',
                                      'other': '{} people are viewing.'}">
                 </ng-pluralize><br>
-      
+
                 <!--- Example with offset --->
                 With Offset(2):
                 <ng-pluralize count="personCount" offset=2
@@ -35843,31 +35843,31 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
                 var withoutOffset = element.all(by.css('ng-pluralize')).get(0);
                 var withOffset = element.all(by.css('ng-pluralize')).get(1);
                 var countInput = element(by.model('personCount'));
-      
+
                 expect(withoutOffset.getText()).toEqual('1 person is viewing.');
                 expect(withOffset.getText()).toEqual('Igor is viewing.');
-      
+
                 countInput.clear();
                 countInput.sendKeys('0');
-      
+
                 expect(withoutOffset.getText()).toEqual('Nobody is viewing.');
                 expect(withOffset.getText()).toEqual('Nobody is viewing.');
-      
+
                 countInput.clear();
                 countInput.sendKeys('2');
-      
+
                 expect(withoutOffset.getText()).toEqual('2 people are viewing.');
                 expect(withOffset.getText()).toEqual('Igor and Misko are viewing.');
-      
+
                 countInput.clear();
                 countInput.sendKeys('3');
-      
+
                 expect(withoutOffset.getText()).toEqual('3 people are viewing.');
                 expect(withOffset.getText()).toEqual('Igor, Misko and one other person are viewing.');
-      
+
                 countInput.clear();
                 countInput.sendKeys('4');
-      
+
                 expect(withoutOffset.getText()).toEqual('4 people are viewing.');
                 expect(withOffset.getText()).toEqual('Igor, Misko and 2 other people are viewing.');
               });
@@ -36239,26 +36239,26 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
               margin:0;
               padding:0 10px;
             }
-      
+
             .animate-repeat {
               line-height:30px;
               list-style:none;
               box-sizing:border-box;
             }
-      
+
             .animate-repeat.ng-move,
             .animate-repeat.ng-enter,
             .animate-repeat.ng-leave {
               transition:all linear 0.5s;
             }
-      
+
             .animate-repeat.ng-leave.ng-leave-active,
             .animate-repeat.ng-move,
             .animate-repeat.ng-enter {
               opacity:0;
               max-height:0;
             }
-      
+
             .animate-repeat.ng-leave,
             .animate-repeat.ng-move.ng-move-active,
             .animate-repeat.ng-enter.ng-enter-active {
@@ -36268,7 +36268,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
           </file>
           <file name="protractor.js" type="protractor">
             var friends = element.all(by.repeater('friend in friends'));
-      
+
             it('should render initial data set', function() {
               expect(friends.count()).toBe(10);
               expect(friends.get(0).getText()).toEqual('[1] John who is 25 years old.');
@@ -36277,12 +36277,12 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
               expect(element(by.binding('friends.length')).getText())
                   .toMatch("I have 10 friends. They are:");
             });
-      
+
              it('should update repeater when filter predicate changes', function() {
                expect(friends.count()).toBe(10);
-      
+
                element(by.model('q')).sendKeys('ma');
-      
+
                expect(friends.count()).toBe(2);
                expect(friends.get(0).getText()).toEqual('[1] Mary who is 28 years old.');
                expect(friends.last().getText()).toEqual('[2] Samantha who is 60 years old.');
@@ -36623,12 +36623,12 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
             .animate-show-hide.ng-hide {
               opacity: 0;
             }
-      
+
             .animate-show-hide.ng-hide-add,
             .animate-show-hide.ng-hide-remove {
               transition: all linear 0.5s;
             }
-      
+
             .check-element {
               border: 1px solid black;
               opacity: 1;
@@ -36639,7 +36639,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
             it('should check ngShow', function() {
               var checkbox = element(by.model('checked'));
               var checkElem = element(by.css('.check-element'));
-      
+
               expect(checkElem.isDisplayed()).toBe(false);
               checkbox.click();
               expect(checkElem.isDisplayed()).toBe(true);
@@ -36663,27 +36663,27 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
               overflow: hidden;
               perspective: 1000px;
             }
-      
+
             .funky-show-hide.ng-hide-add {
               transform: rotateZ(0);
               transform-origin: right;
               transition: all 0.5s ease-in-out;
             }
-      
+
             .funky-show-hide.ng-hide-add.ng-hide-add-active {
               transform: rotateZ(-135deg);
             }
-      
+
             .funky-show-hide.ng-hide-remove {
               transform: rotateY(90deg);
               transform-origin: left;
               transition: all 0.5s ease;
             }
-      
+
             .funky-show-hide.ng-hide-remove.ng-hide-remove-active {
               transform: rotateY(0);
             }
-      
+
             .check-element {
               border: 1px solid black;
               opacity: 1;
@@ -36694,7 +36694,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
             it('should check ngShow', function() {
               var checkbox = element(by.model('checked'));
               var checkElem = element(by.css('.check-element'));
-      
+
               expect(checkElem.isDisplayed()).toBe(false);
               checkbox.click();
               expect(checkElem.isDisplayed()).toBe(true);
@@ -36825,12 +36825,12 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
             .animate-show-hide.ng-hide {
               opacity: 0;
             }
-      
+
             .animate-show-hide.ng-hide-add,
             .animate-show-hide.ng-hide-remove {
               transition: all linear 0.5s;
             }
-      
+
             .check-element {
               border: 1px solid black;
               opacity: 1;
@@ -36841,7 +36841,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
             it('should check ngHide', function() {
               var checkbox = element(by.model('checked'));
               var checkElem = element(by.css('.check-element'));
-      
+
               expect(checkElem.isDisplayed()).toBe(true);
               checkbox.click();
               expect(checkElem.isDisplayed()).toBe(false);
@@ -36865,27 +36865,27 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
               overflow: hidden;
               perspective: 1000px;
             }
-      
+
             .funky-show-hide.ng-hide-add {
               transform: rotateZ(0);
               transform-origin: right;
               transition: all 0.5s ease-in-out;
             }
-      
+
             .funky-show-hide.ng-hide-add.ng-hide-add-active {
               transform: rotateZ(-135deg);
             }
-      
+
             .funky-show-hide.ng-hide-remove {
               transform: rotateY(90deg);
               transform-origin: left;
               transition: all 0.5s ease;
             }
-      
+
             .funky-show-hide.ng-hide-remove.ng-hide-remove-active {
               transform: rotateY(0);
             }
-      
+
             .check-element {
               border: 1px solid black;
               opacity: 1;
@@ -36896,7 +36896,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
             it('should check ngHide', function() {
               var checkbox = element(by.model('checked'));
               var checkElem = element(by.css('.check-element'));
-      
+
               expect(checkElem.isDisplayed()).toBe(true);
               checkbox.click();
               expect(checkElem.isDisplayed()).toBe(false);
@@ -36960,7 +36960,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
            </file>
            <file name="protractor.js" type="protractor">
              var colorSpan = element(by.css('span'));
-      
+
              it('should check ng-style', function() {
                expect(colorSpan.getCssValue('color')).toBe('rgba(0, 0, 0, 1)');
                element(by.css('input[value=\'set color\']')).click();
@@ -37007,7 +37007,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
        * For example, **`ng-switch-when="someVal"`** will match against the string `"someVal"` not against the
        * value of the expression `$scope.someVal`.
        * </div>
-      
+
        * @animations
        * | Animation                        | Occurs                              |
        * |----------------------------------|-------------------------------------|
@@ -37073,21 +37073,21 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
               height:40px;
               overflow:hidden;
             }
-      
+
             .animate-switch {
               padding:10px;
             }
-      
+
             .animate-switch.ng-animate {
               transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-      
+
               position:absolute;
               top:0;
               left:0;
               right:0;
               bottom:0;
             }
-      
+
             .animate-switch.ng-leave.ng-leave-active,
             .animate-switch.ng-enter {
               top:-50px;
@@ -37100,7 +37100,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
           <file name="protractor.js" type="protractor">
             var switchElem = element(by.css('[ng-switch]'));
             var select = element(by.model('selection'));
-      
+
             it('should start in settings', function() {
               expect(switchElem.getText()).toMatch(/Settings Div/);
             });
@@ -37449,7 +37449,7 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
             <script type="text/ng-template" id="/tpl.html">
               Content of the template.
             </script>
-      
+
             <a ng-click="currentTpl='/tpl.html'" id="tpl-link">Load inlined template</a>
             <div id="tpl-content" ng-include src="currentTpl"></div>
           </file>
@@ -38400,10 +38400,10 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
              var required = element(by.binding('form.input.$error.required'));
              var model = element(by.binding('model'));
              var input = element(by.id('input'));
-      
+
              it('should set the required error', function() {
                expect(required.getText()).toContain('true');
-      
+
                input.sendKeys('123');
                expect(required.getText()).not.toContain('true');
                expect(model.getText()).toContain('123');
@@ -38492,11 +38492,11 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
        *   <file name="protractor.js" type="protractor">
              var model = element(by.binding('model'));
              var input = element(by.id('input'));
-      
+
              it('should validate the input with the default pattern', function() {
                input.sendKeys('aaa');
                expect(model.getText()).not.toContain('aaa');
-      
+
                input.clear().then(function() {
                  input.sendKeys('123');
                  expect(model.getText()).toContain('123');
@@ -38588,11 +38588,11 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
        *   <file name="protractor.js" type="protractor">
              var model = element(by.binding('model'));
              var input = element(by.id('input'));
-      
+
              it('should validate the input with the default maxlength', function() {
                input.sendKeys('abcdef');
                expect(model.getText()).not.toContain('abcdef');
-      
+
                input.clear().then(function() {
                  input.sendKeys('abcde');
                  expect(model.getText()).toContain('abcde');
@@ -38674,11 +38674,11 @@ System.registerDynamic("github:angular/bower-angular@1.6.6/angular.js", [], fals
        *   <file name="protractor.js" type="protractor">
              var model = element(by.binding('model'));
              var input = element(by.id('input'));
-      
+
              it('should validate the input with the default minlength', function() {
                input.sendKeys('ab');
                expect(model.getText()).not.toContain('ab');
-      
+
                input.sendKeys('abc');
                expect(model.getText()).toContain('abc');
              });
@@ -39445,7 +39445,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
         uid,
         REGEX_STRING_REGEXP,
         VALIDITY_STATE_PROPERTY,
-      
+
         lowercase,
         uppercase,
         manualLowercase,
@@ -39521,7 +39521,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
         hasOwnProperty,
         createMap,
         stringify,
-      
+
         NODE_TYPE_ELEMENT,
         NODE_TYPE_ATTRIBUTE,
         NODE_TYPE_TEXT,
@@ -39930,12 +39930,12 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
          function transformer(transformationFn, value) {
            return (transformationFn || angular.identity)(value);
          };
-      
+
          // E.g.
          function getResult(fn, input) {
            return (fn || angular.identity)(input);
          };
-      
+
          getResult(function(n) { return n * 2; }, 21);   // returns 42
          getResult(null, 21);                            // returns 21
          getResult(undefined, 21);                       // returns 21
@@ -40288,17 +40288,17 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
               module('copyExample', []).
               controller('ExampleController', ['$scope', function($scope) {
                 $scope.master = {};
-      
+
                 $scope.reset = function() {
                   // Example with 1 argument
                   $scope.user = angular.copy($scope.master);
                 };
-      
+
                 $scope.update = function(user) {
                   // Example with 2 arguments
                   angular.copy(user, $scope.master);
                 };
-      
+
                 $scope.reset();
               }]);
           </file>
@@ -40488,11 +40488,11 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                 <h3>User 1</h3>
                 Name: <input type="text" ng-model="user1.name">
                 Age: <input type="number" ng-model="user1.age">
-      
+
                 <h3>User 2</h3>
                 Name: <input type="text" ng-model="user2.name">
                 Age: <input type="number" ng-model="user2.age">
-      
+
                 <div>
                   <br/>
                   <input type="button" value="Compare" ng-click="compare()">
@@ -41021,26 +41021,26 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
          <div ng-app="ngAppStrictDemo" ng-strict-di>
              <div ng-controller="GoodController1">
                  I can add: {{a}} + {{b}} =  {{ a+b }}
-      
+
                  <p>This renders because the controller does not fail to
                     instantiate, by using explicit annotation style (see
                     script.js for details)
                  </p>
              </div>
-      
+
              <div ng-controller="GoodController2">
                  Name: <input ng-model="name"><br />
                  Hello, {{name}}!
-      
+
                  <p>This renders because the controller does not fail to
                     instantiate, by using explicit annotation style
                     (see script.js for details)
                  </p>
              </div>
-      
+
              <div ng-controller="BadController">
                  I can add: {{a}} + {{b}} =  {{ a+b }}
-      
+
                  <p>The controller could not be instantiated, due to relying
                     on automatic function annotations (which are disabled in
                     strict mode). As such, the content of this section is not
@@ -41927,9 +41927,9 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
 
       /* global angularModule: true,
         version: true,
-      
+
         $CompileProvider,
-      
+
         htmlAnchorDirective,
         inputDirective,
         inputDirective,
@@ -41976,7 +41976,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
         ngModelOptionsDirective,
         ngAttributeAliasDirectives,
         ngEventDirectives,
-      
+
         $AnchorScrollProvider,
         $AnimateProvider,
         $CoreAnimateCssProvider,
@@ -43796,7 +43796,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
        *     {@link auto.$injector#instantiate $injector.instantiate()}, then treated as `object`.
        *
        * @returns {Object} registered provider instance
-      
+
        * @example
        *
        * The following example shows how to create a simple event tracking service and register it using
@@ -45947,14 +45947,14 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                <input ng-model="newCacheKey" placeholder="Key">
                <input ng-model="newCacheValue" placeholder="Value">
                <button ng-click="put(newCacheKey, newCacheValue)">Cache</button>
-      
+
                <p ng-if="keys.length">Cached Values</p>
                <div ng-repeat="key in keys">
                  <span ng-bind="key"></span>
                  <span>: </span>
                  <b ng-bind="cache.get(key)"></b>
                </div>
-      
+
                <p>Cache Info</p>
                <div ng-repeat="(key, value) in cache.info()">
                  <span ng-bind="key"></span>
@@ -46846,7 +46846,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
        * apply to all cloned DOM nodes within the compile function. Specifically, DOM listener registration
        * should be done in a linking function rather than in a compile function.
        * </div>
-      
+
        * <div class="alert alert-warning">
        * **Note:** The compile function cannot handle directives that recursively use themselves in their
        * own templates or compile functions. Compiling these directives results in an infinite loop and
@@ -46862,7 +46862,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
        *   e.g. does not know about the right outer scope. Please use the transclude function that is passed
        *   to the link function instead.
        * </div>
-      
+
        * A compile function can have a return value which can be either a function or an object.
        *
        * * returning a (post-link) function - is equivalent to registering the linking function via the
@@ -47132,7 +47132,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                       // when the 'compile' expression changes
                       // assign it into the current DOM
                       element.html(value);
-      
+
                       // compile the new DOM and link it to the current
                       // scope.
                       // NOTE: we only compile .childNodes so that
@@ -47166,7 +47166,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
            });
          </file>
        </example>
-      
+
        *
        *
        * @param {string|DOMElement} element Element or HTML string to compile into a template function.
@@ -51879,13 +51879,13 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
       <file name="index.html">
       <script>
         var customInterpolationApp = angular.module('customInterpolationApp', []);
-      
+
         customInterpolationApp.config(function($interpolateProvider) {
           $interpolateProvider.startSymbol('//');
           $interpolateProvider.endSymbol('//');
         });
-      
-      
+
+
         customInterpolationApp.controller('DemoController', function() {
             this.label = "This binding is brought you by // interpolation symbols.";
         });
@@ -59659,7 +59659,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
               <h3>{{ filteredText }}</h3>
              </div>
            </file>
-      
+
            <file name="script.js">
             angular.module('filterExample', [])
             .controller('MainCtrl', function($scope, $filter) {
@@ -59811,7 +59811,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                                       {name:'Adam', phone:'555-5678'},
                                       {name:'Julie', phone:'555-8765'},
                                       {name:'Juliette', phone:'555-5678'}]"></div>
-      
+
              <label>Search: <input ng-model="searchText"></label>
              <table id="searchTextResults">
                <tr><th>Name</th><th>Phone</th></tr>
@@ -59841,18 +59841,18 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                  });
                });
              };
-      
+
              it('should search across all fields when filtering with a string', function() {
                var searchText = element(by.model('searchText'));
                searchText.clear();
                searchText.sendKeys('m');
                expectFriendNames(['Mary', 'Mike', 'Adam'], 'friend');
-      
+
                searchText.clear();
                searchText.sendKeys('76');
                expectFriendNames(['John', 'Julie'], 'friend');
              });
-      
+
              it('should search in specific fields when filtering with a predicate object', function() {
                var searchAny = element(by.model('search.$'));
                searchAny.clear();
@@ -60116,7 +60116,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                expect(element(by.binding('val | number:0')).getText()).toBe('1,235');
                expect(element(by.binding('-val | number:4')).getText()).toBe('-1,234.5679');
              });
-      
+
              it('should update', function() {
                element(by.model('val')).clear();
                element(by.model('val')).sendKeys('3374.333');
@@ -60784,7 +60784,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
              var limitedNumbers = element(by.binding('numbers | limitTo:numLimit'));
              var limitedLetters = element(by.binding('letters | limitTo:letterLimit'));
              var limitedLongNumber = element(by.binding('longNumber | limitTo:longNumberLimit'));
-      
+
              it('should limit the number array to first three items', function() {
                expect(numLimitInput.getAttribute('value')).toBe('3');
                expect(letterLimitInput.getAttribute('value')).toBe('3');
@@ -60793,7 +60793,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                expect(limitedLetters.getText()).toEqual('Output letters: abc');
                expect(limitedLongNumber.getText()).toEqual('Output long number: 234');
              });
-      
+
              // There is a bug in safari and protractor that doesn't like the minus key
              // it('should update the output when -3 is entered', function() {
              //   numLimitInput.clear();
@@ -60806,7 +60806,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
              //   expect(limitedLetters.getText()).toEqual('Output letters: ghi');
              //   expect(limitedLongNumber.getText()).toEqual('Output long number: 342');
              // });
-      
+
              it('should not exceed the maximum size of input array', function() {
                numLimitInput.clear();
                numLimitInput.sendKeys('100');
@@ -61017,7 +61017,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
              .friends {
                border-collapse: collapse;
              }
-      
+
              .friends th {
                border-bottom: 1px solid;
              }
@@ -61032,7 +61032,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
            <file name="protractor.js" type="protractor">
              // Element locators
              var names = element.all(by.repeater('friends').column('friend.name'));
-      
+
              it('should sort friends by age in reverse order', function() {
                expect(names.get(0).getText()).toBe('Adam');
                expect(names.get(1).getText()).toBe('Julie');
@@ -61090,11 +61090,11 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                    {name: 'Adam',   phone: '555-5678',  age: 35},
                    {name: 'Julie',  phone: '555-8765',  age: 29}
                  ];
-      
+
                  $scope.propertyName = 'age';
                  $scope.reverse = true;
                  $scope.friends = friends;
-      
+
                  $scope.sortBy = function(propertyName) {
                    $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
                    $scope.propertyName = propertyName;
@@ -61105,7 +61105,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
              .friends {
                border-collapse: collapse;
              }
-      
+
              .friends th {
                border-bottom: 1px solid;
              }
@@ -61116,7 +61116,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
              .friends td:first-child, .friends th:first-child {
                border-left: none;
              }
-      
+
              .sortorder:after {
                content: '\25b2';   // BLACK UP-POINTING TRIANGLE
              }
@@ -61132,41 +61132,41 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
              var ageHeader = element(by.partialButtonText('Age'));
              var firstName = element(by.repeater('friends').column('friend.name').row(0));
              var lastName = element(by.repeater('friends').column('friend.name').row(4));
-      
+
              it('should sort friends by some property, when clicking on the column header', function() {
                expect(firstName.getText()).toBe('Adam');
                expect(lastName.getText()).toBe('John');
-      
+
                phoneHeader.click();
                expect(firstName.getText()).toBe('John');
                expect(lastName.getText()).toBe('Mary');
-      
+
                nameHeader.click();
                expect(firstName.getText()).toBe('Adam');
                expect(lastName.getText()).toBe('Mike');
-      
+
                ageHeader.click();
                expect(firstName.getText()).toBe('John');
                expect(lastName.getText()).toBe('Adam');
              });
-      
+
              it('should sort friends in reverse order, when clicking on the same column', function() {
                expect(firstName.getText()).toBe('Adam');
                expect(lastName.getText()).toBe('John');
-      
+
                ageHeader.click();
                expect(firstName.getText()).toBe('John');
                expect(lastName.getText()).toBe('Adam');
-      
+
                ageHeader.click();
                expect(firstName.getText()).toBe('Adam');
                expect(lastName.getText()).toBe('John');
              });
-      
+
              it('should restore the original order, when clicking "Set to unsorted"', function() {
                expect(firstName.getText()).toBe('Adam');
                expect(lastName.getText()).toBe('John');
-      
+
                unsortButton.click();
                expect(firstName.getText()).toBe('John');
                expect(lastName.getText()).toBe('Julie');
@@ -61222,11 +61222,11 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                    {name: 'Adam',   phone: '555-5678',  age: 35},
                    {name: 'Julie',  phone: '555-8765',  age: 29}
                  ];
-      
+
                  $scope.propertyName = 'age';
                  $scope.reverse = true;
                  $scope.friends = orderBy(friends, $scope.propertyName, $scope.reverse);
-      
+
                  $scope.sortBy = function(propertyName) {
                    $scope.reverse = (propertyName !== null && $scope.propertyName === propertyName)
                        ? !$scope.reverse : false;
@@ -61239,7 +61239,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
              .friends {
                border-collapse: collapse;
              }
-      
+
              .friends th {
                border-bottom: 1px solid;
              }
@@ -61250,7 +61250,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
              .friends td:first-child, .friends th:first-child {
                border-left: none;
              }
-      
+
              .sortorder:after {
                content: '\25b2';   // BLACK UP-POINTING TRIANGLE
              }
@@ -61266,41 +61266,41 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
              var ageHeader = element(by.partialButtonText('Age'));
              var firstName = element(by.repeater('friends').column('friend.name').row(0));
              var lastName = element(by.repeater('friends').column('friend.name').row(4));
-      
+
              it('should sort friends by some property, when clicking on the column header', function() {
                expect(firstName.getText()).toBe('Adam');
                expect(lastName.getText()).toBe('John');
-      
+
                phoneHeader.click();
                expect(firstName.getText()).toBe('John');
                expect(lastName.getText()).toBe('Mary');
-      
+
                nameHeader.click();
                expect(firstName.getText()).toBe('Adam');
                expect(lastName.getText()).toBe('Mike');
-      
+
                ageHeader.click();
                expect(firstName.getText()).toBe('John');
                expect(lastName.getText()).toBe('Adam');
              });
-      
+
              it('should sort friends in reverse order, when clicking on the same column', function() {
                expect(firstName.getText()).toBe('Adam');
                expect(lastName.getText()).toBe('John');
-      
+
                ageHeader.click();
                expect(firstName.getText()).toBe('John');
                expect(lastName.getText()).toBe('Adam');
-      
+
                ageHeader.click();
                expect(firstName.getText()).toBe('Adam');
                expect(lastName.getText()).toBe('John');
              });
-      
+
              it('should restore the original order, when clicking "Set to unsorted"', function() {
                expect(firstName.getText()).toBe('Adam');
                expect(lastName.getText()).toBe('John');
-      
+
                unsortButton.click();
                expect(firstName.getText()).toBe('John');
                expect(lastName.getText()).toBe('Julie');
@@ -61358,13 +61358,13 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                    {name: 'Adam',   favoriteLetter: 'H'},
                    {name: 'Julie',  favoriteLetter: 'Z'}
                  ];
-      
+
                  $scope.localeSensitiveComparator = function(v1, v2) {
                    // If we don't get strings, just compare by index
                    if (v1.type !== 'string' || v2.type !== 'string') {
                      return (v1.index < v2.index) ? -1 : 1;
                    }
-      
+
                    // Compare strings alphabetically, taking locale into account
                    return v1.value.localeCompare(v2.value);
                  };
@@ -61375,11 +61375,11 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                display: inline-block;
                margin: 0 30px;
              }
-      
+
              .friends {
                border-collapse: collapse;
              }
-      
+
              .friends th {
                border-bottom: 1px solid;
              }
@@ -61395,7 +61395,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
              // Element locators
              var container = element(by.css('.custom-comparator'));
              var names = container.all(by.repeater('friends').column('friend.name'));
-      
+
              it('should sort friends by favorite letter (in correct alphabetical order)', function() {
                expect(names.get(0).getText()).toBe('John');
                expect(names.get(1).getText()).toBe('Adam');
@@ -61648,47 +61648,47 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                 expect(element(by.model('value')).getAttribute('value')).toEqual('1');
                 expect(element(by.id('link-1')).getAttribute('href')).toBe('');
               });
-      
+
               it('should execute ng-click but not reload when href empty string', function() {
                 element(by.id('link-2')).click();
                 expect(element(by.model('value')).getAttribute('value')).toEqual('2');
                 expect(element(by.id('link-2')).getAttribute('href')).toBe('');
               });
-      
+
               it('should execute ng-click and change url when ng-href specified', function() {
                 expect(element(by.id('link-3')).getAttribute('href')).toMatch(/\/123$/);
-      
+
                 element(by.id('link-3')).click();
-      
+
                 // At this point, we navigate away from an Angular page, so we need
                 // to use browser.driver to get the base webdriver.
-      
+
                 browser.wait(function() {
                   return browser.driver.getCurrentUrl().then(function(url) {
                     return url.match(/\/123$/);
                   });
                 }, 5000, 'page should navigate to /123');
               });
-      
+
               it('should execute ng-click but not reload when href empty string and name specified', function() {
                 element(by.id('link-4')).click();
                 expect(element(by.model('value')).getAttribute('value')).toEqual('4');
                 expect(element(by.id('link-4')).getAttribute('href')).toBe('');
               });
-      
+
               it('should execute ng-click but not reload when no href but name specified', function() {
                 element(by.id('link-5')).click();
                 expect(element(by.model('value')).getAttribute('value')).toEqual('5');
                 expect(element(by.id('link-5')).getAttribute('href')).toBe(null);
               });
-      
+
               it('should only change url when only ng-href', function() {
                 element(by.model('value')).clear();
                 element(by.model('value')).sendKeys('6');
                 expect(element(by.id('link-6')).getAttribute('href')).toMatch(/\/6$/);
-      
+
                 element(by.id('link-6')).click();
-      
+
                 // At this point, we navigate away from an Angular page, so we need
                 // to use browser.driver to get the base webdriver.
                 browser.wait(function() {
@@ -64670,45 +64670,45 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
               var formValid = element(by.binding('myForm.$valid'));
               var userNameInput = element(by.model('user.name'));
               var userLastInput = element(by.model('user.last'));
-      
+
               it('should initialize to model', function() {
                 expect(user.getText()).toContain('{"name":"guest","last":"visitor"}');
                 expect(userNameValid.getText()).toContain('true');
                 expect(formValid.getText()).toContain('true');
               });
-      
+
               it('should be invalid if empty when required', function() {
                 userNameInput.clear();
                 userNameInput.sendKeys('');
-      
+
                 expect(user.getText()).toContain('{"last":"visitor"}');
                 expect(userNameValid.getText()).toContain('false');
                 expect(formValid.getText()).toContain('false');
               });
-      
+
               it('should be valid if empty when min length is set', function() {
                 userLastInput.clear();
                 userLastInput.sendKeys('');
-      
+
                 expect(user.getText()).toContain('{"name":"guest","last":""}');
                 expect(lastNameValid.getText()).toContain('true');
                 expect(formValid.getText()).toContain('true');
               });
-      
+
               it('should be invalid if less than required min length', function() {
                 userLastInput.clear();
                 userLastInput.sendKeys('xx');
-      
+
                 expect(user.getText()).toContain('{"name":"guest"}');
                 expect(lastNameValid.getText()).toContain('false');
                 expect(lastNameError.getText()).toContain('minlength');
                 expect(formValid.getText()).toContain('false');
               });
-      
+
               it('should be invalid if longer than max length', function() {
                 userLastInput.clear();
                 userLastInput.sendKeys('some ridiculously long name');
-      
+
                 expect(user.getText()).toContain('{"name":"guest"}');
                 expect(lastNameValid.getText()).toContain('false');
                 expect(lastNameError.getText()).toContain('maxlength');
@@ -64776,7 +64776,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
             </file>
             <file name="protractor.js" type="protractor">
               var favorite = element(by.binding('my.favorite'));
-      
+
               it('should initialize to model', function() {
                 expect(favorite.getText()).toContain('unicorns');
               });
@@ -64864,7 +64864,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
            <file name="protractor.js" type="protractor">
              it('should check ng-bind', function() {
                var nameInput = element(by.model('name'));
-      
+
                expect(element(by.binding('name')).getText()).toBe('Whirled');
                nameInput.clear();
                nameInput.sendKeys('world');
@@ -64927,14 +64927,14 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                var salutationElem = element(by.binding('salutation'));
                var salutationInput = element(by.model('salutation'));
                var nameInput = element(by.model('name'));
-      
+
                expect(salutationElem.getText()).toBe('Hello World!');
-      
+
                salutationInput.clear();
                salutationInput.sendKeys('Greetings');
                nameInput.clear();
                nameInput.sendKeys('user');
-      
+
                expect(salutationElem.getText()).toBe('Greetings user!');
              });
            </file>
@@ -64978,14 +64978,14 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
        * @param {expression} ngBindHtml {@link guide/expression Expression} to evaluate.
        *
        * @example
-      
+
          <example module="bindHtmlExample" deps="angular-sanitize.js" name="ng-bind-html">
            <file name="index.html">
              <div ng-controller="ExampleController">
               <p ng-bind-html="myHTML"></p>
              </div>
            </file>
-      
+
            <file name="script.js">
              angular.module('bindHtmlExample', ['ngSanitize'])
                .controller('ExampleController', ['$scope', function($scope) {
@@ -64994,7 +64994,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                     '<a href="#">links!</a> and other <em>stuff</em>';
                }]);
            </file>
-      
+
            <file name="protractor.js" type="protractor">
              it('should check ng-bind-html', function() {
                expect(element(by.binding('myHTML')).getText()).toBe(
@@ -65087,7 +65087,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
        *
        *     it('should not evaluate the expression if changing from model', function() {
        *       element(by.id('ng-change-example2')).click();
-      
+
        *       expect(counter.getText()).toContain('0');
        *       expect(debug.getText()).toContain('true');
        *     });
@@ -65384,26 +65384,26 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
            </file>
            <file name="protractor.js" type="protractor">
              var ps = element.all(by.css('p'));
-      
+
              it('should let you toggle the class', function() {
-      
+
                expect(ps.first().getAttribute('class')).not.toMatch(/bold/);
                expect(ps.first().getAttribute('class')).not.toMatch(/has-error/);
-      
+
                element(by.model('important')).click();
                expect(ps.first().getAttribute('class')).toMatch(/bold/);
-      
+
                element(by.model('error')).click();
                expect(ps.first().getAttribute('class')).toMatch(/has-error/);
              });
-      
+
              it('should let you toggle string example', function() {
                expect(ps.get(1).getAttribute('class')).toBe('');
                element(by.model('style')).clear();
                element(by.model('style')).sendKeys('red');
                expect(ps.get(1).getAttribute('class')).toBe('red');
              });
-      
+
              it('array example should have 3 classes', function() {
                expect(ps.get(2).getAttribute('class')).toBe('');
                element(by.model('style1')).sendKeys('bold');
@@ -65411,7 +65411,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                element(by.model('style3')).sendKeys('red');
                expect(ps.get(2).getAttribute('class')).toBe('bold strike red');
              });
-      
+
              it('array with map example should have 2 classes', function() {
                expect(ps.last().getAttribute('class')).toBe('');
                element(by.model('style4')).sendKeys('bold');
@@ -65420,11 +65420,11 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
              });
            </file>
          </example>
-      
+
          ## Animations
-      
+
          The example below demonstrates how to perform animations using ngClass.
-      
+
          <example module="ngAnimate" deps="angular-animate.js" animations="true" name="ng-class">
            <file name="index.html">
             <input id="setbtn" type="button" value="set" ng-click="myVar='my-class'">
@@ -65436,7 +65436,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
              .base-class {
                transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
              }
-      
+
              .base-class.my-class {
                color: red;
                font-size:3em;
@@ -65446,21 +65446,21 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
              it('should check ng-class', function() {
                expect(element(by.css('.base-class')).getAttribute('class')).not.
                  toMatch(/my-class/);
-      
+
                element(by.id('setbtn')).click();
-      
+
                expect(element(by.css('.base-class')).getAttribute('class')).
                  toMatch(/my-class/);
-      
+
                element(by.id('clearbtn')).click();
-      
+
                expect(element(by.css('.base-class')).getAttribute('class')).not.
                  toMatch(/my-class/);
              });
            </file>
          </example>
-      
-      
+
+
          ## ngClass and pre-existing CSS3 Transitions/Animations
          The ngClass directive still supports CSS3 Transitions/Animations even if they do not follow the ngAnimate CSS naming structure.
          Upon animation ngAnimate will apply supplementary CSS classes to track the start and end of an animation, but this will not hinder
@@ -65851,7 +65851,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
        *    });
        *  </file>
        *</example>
-      
+
        */
       var ngControllerDirective = [function () {
         return {
@@ -65959,7 +65959,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                       {{ctrl.counter}}
                     </span>
                   </div>
-      
+
                   <div>
                     <button ng-click="ctrl.evil()" id="evil">Evil</button>
                     <span id="evilError">
@@ -65986,12 +65986,12 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
               </file>
               <file name="protractor.js" type="protractor">
                 var util, webdriver;
-      
+
                 var incBtn = element(by.id('inc'));
                 var counter = element(by.id('counter'));
                 var evilBtn = element(by.id('evil'));
                 var evilError = element(by.id('evilError'));
-      
+
                 function getAndClearSevereErrors() {
                   return browser.manage().logs().get('browser').then(function(browserLog) {
                     return browserLog.filter(function(logEntry) {
@@ -65999,11 +65999,11 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                     });
                   });
                 }
-      
+
                 function clearErrors() {
                   getAndClearSevereErrors();
                 }
-      
+
                 function expectNoErrors() {
                   getAndClearSevereErrors().then(function(filteredLog) {
                     expect(filteredLog.length).toEqual(0);
@@ -66012,7 +66012,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                     }
                   });
                 }
-      
+
                 function expectError(regex) {
                   getAndClearSevereErrors().then(function(filteredLog) {
                     var found = false;
@@ -66026,19 +66026,19 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                     }
                   });
                 }
-      
+
                 beforeEach(function() {
                   util = require('util');
                   webdriver = require('selenium-webdriver');
                 });
-      
+
                 // For now, we only test on Chrome,
                 // as Safari does not load the page with Protractor's injected scripts,
                 // and Firefox webdriver always disables content security policy (#6358)
                 if (browser.params.browser !== 'chrome') {
                   return;
                 }
-      
+
                 it('should not report errors when the page is loaded', function() {
                   // clear errors so we are not dependent on previous tests
                   clearErrors();
@@ -66049,14 +66049,14 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                   });
                   expectNoErrors();
                 });
-      
+
                 it('should evaluate expressions', function() {
                   expect(counter.getText()).toEqual('0');
                   incBtn.click();
                   expect(counter.getText()).toEqual('1');
                   expectNoErrors();
                 });
-      
+
                 it('should throw and report an error when using "eval"', function() {
                   evilBtn.click();
                   expect(evilError.getText()).toMatch(/Content Security Policy/);
@@ -66342,7 +66342,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
            <file name="index.html">
              <p>Typing in the input box below updates the key count</p>
              <input ng-keyup="count = count + 1" ng-init="count=0"> key up count: {{count}}
-      
+
              <p>Typing in the input box below updates the keycode</p>
              <input ng-keyup="event=$event">
              <p>event keyCode: {{ event.keyCode }}</p>
@@ -66603,16 +66603,16 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
               border:1px solid black;
               padding:10px;
             }
-      
+
             .animate-if.ng-enter, .animate-if.ng-leave {
               transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
             }
-      
+
             .animate-if.ng-enter,
             .animate-if.ng-leave.ng-leave-active {
               opacity:0;
             }
-      
+
             .animate-if.ng-leave,
             .animate-if.ng-enter.ng-enter-active {
               opacity:1;
@@ -66755,14 +66755,14 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
               height:40px;
               overflow:hidden;
             }
-      
+
             .slide-animate {
               padding:10px;
             }
-      
+
             .slide-animate.ng-enter, .slide-animate.ng-leave {
               transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-      
+
               position:absolute;
               top:0;
               left:0;
@@ -66771,14 +66771,14 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
               display:block;
               padding:10px;
             }
-      
+
             .slide-animate.ng-enter {
               top:-50px;
             }
             .slide-animate.ng-enter.ng-enter-active {
               top:0;
             }
-      
+
             .slide-animate.ng-leave {
               top:0;
             }
@@ -66789,11 +66789,11 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
           <file name="protractor.js" type="protractor">
             var templateSelect = element(by.model('template'));
             var includeElem = element(by.css('[ng-include]'));
-      
+
             it('should load template1.html', function() {
               expect(includeElem.getText()).toMatch(/Content of template1.html/);
             });
-      
+
             it('should load template2.html', function() {
               if (browser.params.browser === 'firefox') {
                 // Firefox can't handle using selects
@@ -66804,7 +66804,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
               templateSelect.all(by.css('option')).get(2).click();
               expect(includeElem.getText()).toMatch(/Content of template2.html/);
             });
-      
+
             it('should change to blank', function() {
               if (browser.params.browser === 'firefox') {
                 // Firefox can't handle using selects
@@ -67200,19 +67200,19 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
           `$viewValue`} from the DOM, usually via user input.
           See {@link ngModel.NgModelController#$setViewValue `$setViewValue()`} for a detailed lifecycle explanation.
           Note that the `$parsers` are not called when the bound ngModel expression changes programmatically.
-      
+
         The functions are called in array order, each passing
           its return value through to the next. The last return value is forwarded to the
           {@link ngModel.NgModelController#$validators `$validators`} collection.
-      
+
         Parsers are used to sanitize / convert the {@link ngModel.NgModelController#$viewValue
           `$viewValue`}.
-      
+
         Returning `undefined` from a parser means a parse error occurred. In that case,
           no {@link ngModel.NgModelController#$validators `$validators`} will run and the `ngModel`
           will be set to `undefined` unless {@link ngModelOptions `ngModelOptions.allowInvalid`}
           is set to `true`. The parse error is stored in `ngModel.$error.parse`.
-      
+
         This simple example shows a parser that would convert text input value to lowercase:
        * ```js
        * function parse(value) {
@@ -67222,20 +67222,20 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
        * }
        * ngModelController.$parsers.push(parse);
        * ```
-      
+
        *
        * @property {Array.<Function>} $formatters Array of functions to execute, as a pipeline, whenever
           the bound ngModel expression changes programmatically. The `$formatters` are not called when the
           value of the control is changed by user interaction.
-      
+
         Formatters are used to format / convert the {@link ngModel.NgModelController#$modelValue
           `$modelValue`} for display in the control.
-      
+
         The functions are called in reverse array order, each passing the value through to the
           next. The last return value is used as the actual DOM value.
-      
+
         This simple example shows a formatter that would convert the model value to uppercase:
-      
+
        * ```js
        * function format(value) {
        *   if (value) {
@@ -67337,11 +67337,11 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
               background-color: white;
               min-height: 20px;
             }
-      
+
             .ng-invalid {
               border: 1px solid red;
             }
-      
+
           </file>
           <file name="script.js">
             angular.module('customControl', ['ngSanitize']).
@@ -67351,18 +67351,18 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                   require: '?ngModel', // get a hold of NgModelController
                   link: function(scope, element, attrs, ngModel) {
                     if (!ngModel) return; // do nothing if no ng-model
-      
+
                     // Specify how UI should be updated
                     ngModel.$render = function() {
                       element.html($sce.getTrustedHtml(ngModel.$viewValue || ''));
                     };
-      
+
                     // Listen for change events to enable binding
                     element.on('blur keyup change', function() {
                       scope.$evalAsync(read);
                     });
                     read(); // initialize
-      
+
                     // Write data to the model
                     function read() {
                       var html = element.html();
@@ -67397,9 +67397,9 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
             }
             var contentEditable = element(by.css('[contenteditable]'));
             var content = 'Change me!';
-      
+
             expect(contentEditable.getText()).toEqual(content);
-      
+
             contentEditable.clear();
             contentEditable.sendKeys(protractor.Key.BACK_SPACE);
             expect(contentEditable.getText()).toEqual('');
@@ -68959,20 +68959,20 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                     <option value="">-- choose color --</option>
                   </select>
                 </span></label><br/>
-      
+
                 <label>Color grouped by shade:
                   <select ng-model="myColor" ng-options="color.name group by color.shade for color in colors">
                   </select>
                 </label><br/>
-      
+
                 <label>Color grouped by shade, with some disabled:
                   <select ng-model="myColor"
                         ng-options="color.name group by color.shade disable when color.notAnOption for color in colors">
                   </select>
                 </label><br/>
-      
-      
-      
+
+
+
                 Select <button ng-click="myColor = { name:'not in list', shade: 'other' }">bogus</button>.
                 <br/>
                 <hr/>
@@ -69575,7 +69575,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                 <label>Person 1:<input type="text" ng-model="person1" value="Igor" /></label><br/>
                 <label>Person 2:<input type="text" ng-model="person2" value="Misko" /></label><br/>
                 <label>Number of People:<input type="text" ng-model="personCount" value="1" /></label><br/>
-      
+
                 <!--- Example with simple pluralization rules for en locale --->
                 Without Offset:
                 <ng-pluralize count="personCount"
@@ -69583,7 +69583,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                                      'one': '1 person is viewing.',
                                      'other': '{} people are viewing.'}">
                 </ng-pluralize><br>
-      
+
                 <!--- Example with offset --->
                 With Offset(2):
                 <ng-pluralize count="personCount" offset=2
@@ -69600,31 +69600,31 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
                 var withoutOffset = element.all(by.css('ng-pluralize')).get(0);
                 var withOffset = element.all(by.css('ng-pluralize')).get(1);
                 var countInput = element(by.model('personCount'));
-      
+
                 expect(withoutOffset.getText()).toEqual('1 person is viewing.');
                 expect(withOffset.getText()).toEqual('Igor is viewing.');
-      
+
                 countInput.clear();
                 countInput.sendKeys('0');
-      
+
                 expect(withoutOffset.getText()).toEqual('Nobody is viewing.');
                 expect(withOffset.getText()).toEqual('Nobody is viewing.');
-      
+
                 countInput.clear();
                 countInput.sendKeys('2');
-      
+
                 expect(withoutOffset.getText()).toEqual('2 people are viewing.');
                 expect(withOffset.getText()).toEqual('Igor and Misko are viewing.');
-      
+
                 countInput.clear();
                 countInput.sendKeys('3');
-      
+
                 expect(withoutOffset.getText()).toEqual('3 people are viewing.');
                 expect(withOffset.getText()).toEqual('Igor, Misko and one other person are viewing.');
-      
+
                 countInput.clear();
                 countInput.sendKeys('4');
-      
+
                 expect(withoutOffset.getText()).toEqual('4 people are viewing.');
                 expect(withOffset.getText()).toEqual('Igor, Misko and 2 other people are viewing.');
               });
@@ -69996,26 +69996,26 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
               margin:0;
               padding:0 10px;
             }
-      
+
             .animate-repeat {
               line-height:30px;
               list-style:none;
               box-sizing:border-box;
             }
-      
+
             .animate-repeat.ng-move,
             .animate-repeat.ng-enter,
             .animate-repeat.ng-leave {
               transition:all linear 0.5s;
             }
-      
+
             .animate-repeat.ng-leave.ng-leave-active,
             .animate-repeat.ng-move,
             .animate-repeat.ng-enter {
               opacity:0;
               max-height:0;
             }
-      
+
             .animate-repeat.ng-leave,
             .animate-repeat.ng-move.ng-move-active,
             .animate-repeat.ng-enter.ng-enter-active {
@@ -70025,7 +70025,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
           </file>
           <file name="protractor.js" type="protractor">
             var friends = element.all(by.repeater('friend in friends'));
-      
+
             it('should render initial data set', function() {
               expect(friends.count()).toBe(10);
               expect(friends.get(0).getText()).toEqual('[1] John who is 25 years old.');
@@ -70034,12 +70034,12 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
               expect(element(by.binding('friends.length')).getText())
                   .toMatch("I have 10 friends. They are:");
             });
-      
+
              it('should update repeater when filter predicate changes', function() {
                expect(friends.count()).toBe(10);
-      
+
                element(by.model('q')).sendKeys('ma');
-      
+
                expect(friends.count()).toBe(2);
                expect(friends.get(0).getText()).toEqual('[1] Mary who is 28 years old.');
                expect(friends.last().getText()).toEqual('[2] Samantha who is 60 years old.');
@@ -70380,12 +70380,12 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
             .animate-show-hide.ng-hide {
               opacity: 0;
             }
-      
+
             .animate-show-hide.ng-hide-add,
             .animate-show-hide.ng-hide-remove {
               transition: all linear 0.5s;
             }
-      
+
             .check-element {
               border: 1px solid black;
               opacity: 1;
@@ -70396,7 +70396,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
             it('should check ngShow', function() {
               var checkbox = element(by.model('checked'));
               var checkElem = element(by.css('.check-element'));
-      
+
               expect(checkElem.isDisplayed()).toBe(false);
               checkbox.click();
               expect(checkElem.isDisplayed()).toBe(true);
@@ -70420,27 +70420,27 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
               overflow: hidden;
               perspective: 1000px;
             }
-      
+
             .funky-show-hide.ng-hide-add {
               transform: rotateZ(0);
               transform-origin: right;
               transition: all 0.5s ease-in-out;
             }
-      
+
             .funky-show-hide.ng-hide-add.ng-hide-add-active {
               transform: rotateZ(-135deg);
             }
-      
+
             .funky-show-hide.ng-hide-remove {
               transform: rotateY(90deg);
               transform-origin: left;
               transition: all 0.5s ease;
             }
-      
+
             .funky-show-hide.ng-hide-remove.ng-hide-remove-active {
               transform: rotateY(0);
             }
-      
+
             .check-element {
               border: 1px solid black;
               opacity: 1;
@@ -70451,7 +70451,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
             it('should check ngShow', function() {
               var checkbox = element(by.model('checked'));
               var checkElem = element(by.css('.check-element'));
-      
+
               expect(checkElem.isDisplayed()).toBe(false);
               checkbox.click();
               expect(checkElem.isDisplayed()).toBe(true);
@@ -70582,12 +70582,12 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
             .animate-show-hide.ng-hide {
               opacity: 0;
             }
-      
+
             .animate-show-hide.ng-hide-add,
             .animate-show-hide.ng-hide-remove {
               transition: all linear 0.5s;
             }
-      
+
             .check-element {
               border: 1px solid black;
               opacity: 1;
@@ -70598,7 +70598,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
             it('should check ngHide', function() {
               var checkbox = element(by.model('checked'));
               var checkElem = element(by.css('.check-element'));
-      
+
               expect(checkElem.isDisplayed()).toBe(true);
               checkbox.click();
               expect(checkElem.isDisplayed()).toBe(false);
@@ -70622,27 +70622,27 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
               overflow: hidden;
               perspective: 1000px;
             }
-      
+
             .funky-show-hide.ng-hide-add {
               transform: rotateZ(0);
               transform-origin: right;
               transition: all 0.5s ease-in-out;
             }
-      
+
             .funky-show-hide.ng-hide-add.ng-hide-add-active {
               transform: rotateZ(-135deg);
             }
-      
+
             .funky-show-hide.ng-hide-remove {
               transform: rotateY(90deg);
               transform-origin: left;
               transition: all 0.5s ease;
             }
-      
+
             .funky-show-hide.ng-hide-remove.ng-hide-remove-active {
               transform: rotateY(0);
             }
-      
+
             .check-element {
               border: 1px solid black;
               opacity: 1;
@@ -70653,7 +70653,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
             it('should check ngHide', function() {
               var checkbox = element(by.model('checked'));
               var checkElem = element(by.css('.check-element'));
-      
+
               expect(checkElem.isDisplayed()).toBe(true);
               checkbox.click();
               expect(checkElem.isDisplayed()).toBe(false);
@@ -70717,7 +70717,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
            </file>
            <file name="protractor.js" type="protractor">
              var colorSpan = element(by.css('span'));
-      
+
              it('should check ng-style', function() {
                expect(colorSpan.getCssValue('color')).toBe('rgba(0, 0, 0, 1)');
                element(by.css('input[value=\'set color\']')).click();
@@ -70764,7 +70764,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
        * For example, **`ng-switch-when="someVal"`** will match against the string `"someVal"` not against the
        * value of the expression `$scope.someVal`.
        * </div>
-      
+
        * @animations
        * | Animation                        | Occurs                              |
        * |----------------------------------|-------------------------------------|
@@ -70830,21 +70830,21 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
               height:40px;
               overflow:hidden;
             }
-      
+
             .animate-switch {
               padding:10px;
             }
-      
+
             .animate-switch.ng-animate {
               transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-      
+
               position:absolute;
               top:0;
               left:0;
               right:0;
               bottom:0;
             }
-      
+
             .animate-switch.ng-leave.ng-leave-active,
             .animate-switch.ng-enter {
               top:-50px;
@@ -70857,7 +70857,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
           <file name="protractor.js" type="protractor">
             var switchElem = element(by.css('[ng-switch]'));
             var select = element(by.model('selection'));
-      
+
             it('should start in settings', function() {
               expect(switchElem.getText()).toMatch(/Settings Div/);
             });
@@ -71206,7 +71206,7 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
             <script type="text/ng-template" id="/tpl.html">
               Content of the template.
             </script>
-      
+
             <a ng-click="currentTpl='/tpl.html'" id="tpl-link">Load inlined template</a>
             <div id="tpl-content" ng-include src="currentTpl"></div>
           </file>
@@ -72157,10 +72157,10 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
              var required = element(by.binding('form.input.$error.required'));
              var model = element(by.binding('model'));
              var input = element(by.id('input'));
-      
+
              it('should set the required error', function() {
                expect(required.getText()).toContain('true');
-      
+
                input.sendKeys('123');
                expect(required.getText()).not.toContain('true');
                expect(model.getText()).toContain('123');
@@ -72249,11 +72249,11 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
        *   <file name="protractor.js" type="protractor">
              var model = element(by.binding('model'));
              var input = element(by.id('input'));
-      
+
              it('should validate the input with the default pattern', function() {
                input.sendKeys('aaa');
                expect(model.getText()).not.toContain('aaa');
-      
+
                input.clear().then(function() {
                  input.sendKeys('123');
                  expect(model.getText()).toContain('123');
@@ -72345,11 +72345,11 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
        *   <file name="protractor.js" type="protractor">
              var model = element(by.binding('model'));
              var input = element(by.id('input'));
-      
+
              it('should validate the input with the default maxlength', function() {
                input.sendKeys('abcdef');
                expect(model.getText()).not.toContain('abcdef');
-      
+
                input.clear().then(function() {
                  input.sendKeys('abcde');
                  expect(model.getText()).toContain('abcde');
@@ -72431,11 +72431,11 @@ System.registerDynamic("npm:angular@1.6.6/angular.js", [], false, function ($__r
        *   <file name="protractor.js" type="protractor">
              var model = element(by.binding('model'));
              var input = element(by.id('input'));
-      
+
              it('should validate the input with the default minlength', function() {
                input.sendKeys('ab');
                expect(model.getText()).not.toContain('ab');
-      
+
                input.sendKeys('abc');
                expect(model.getText()).toContain('abc');
              });
@@ -84742,7 +84742,7 @@ var define = System.amdDefine;
   else {
     if ("object" != typeof module || !module.exports || "function" != typeof require)
       throw new Error("Module must be loaded as AMD or CommonJS");
-    module.exports = factory(require("angular-core"));
+    module.exports = factory(require("milenstanev/mstanev.angular.1.x.x.core"));
   }
 });
 
@@ -84770,9 +84770,9 @@ System.register('src/futureRoutes.js', [], function (_export) {
         'stateName': 'test',
         'urlPrefix': '/test',
         'type': 'load',
-        'src': 'testModule',
+        'src': 'milenstanev/jspm.angular.test-module',
         'moduleExport': 'module:name:constant',
-        'moduleExportName': 'testModule'
+        'moduleExportName': 'milenstanev/jspm.angular.test-module'
       }];
 
       _export('futureRoutes', futureRoutes);
