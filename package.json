@@ -47,6 +47,7 @@
     "gulp": "^3.9.1",
     "gulp-dev": "^0.3.0",
     "gulp-strip-comments": "^2.5.1",
-    "jspm": "^0.16.53"
+    "jspm": "^0.16.53",
+    "simple-git": "^1.77.0"
   }
 }
