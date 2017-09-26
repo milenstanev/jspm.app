@@ -4,8 +4,6 @@ import { appLazyLoadRouterModule, futureRoutesCollection } from 'milenstanev/jsp
 import { LayoutDefault } from 'layoutDefault';
 import { futureRoutes } from './futureRoutes';
 
-import template from './index.html!text';
-
 const defaultView = '/test' || futureRoutes[0].urlPrefix;
 Object.assign(futureRoutesCollection, [...futureRoutes]);
 
@@ -17,17 +15,16 @@ export const Module = angular
     LayoutDefault,
     appLazyLoadRouterModule
   ])
-  .constant('defaultView', defaultView)
-  .config(($stateProvider, $urlRouterProvider, defaultView) => {
+  .config(($stateProvider, $urlRouterProvider) => {
     $stateProvider
       .state('404', {
         url: '/404',
         component: 'page404'
       });
 
-    return $urlRouterProvider.otherwise(defaultView || '/404');
+    return $urlRouterProvider.otherwise('/404');
   })
   .component('page404', {template: '404'})
-  .component('app', {template});
+  .component('app', {template: '<layout></layout>'});
 
 angular.bootstrap(document.body, [Module.name]);

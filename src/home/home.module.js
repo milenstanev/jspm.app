@@ -8,8 +8,8 @@ export const appHome = angular
   .module('app.home', [
     CoreModule
   ])
-  .config(($stateProvider, $urlRouterProvider, defaultView) => {
-    defaultView = '/home';
+  .config(($stateProvider, $urlRouterProvider) => {
+    const defaultView = '/home';
 
     $stateProvider
       .state('home', {
