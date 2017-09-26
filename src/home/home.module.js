@@ -45,7 +45,7 @@ export const appHome = angular
       map,
       getData: () => {
         $timeout(() => {
-          map.get('data').add({title: '666'});
+          map.get('data').add({title: 'added'});
         }, 2000);
 
         return new Promise((resolve) => {

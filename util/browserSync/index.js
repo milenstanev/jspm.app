@@ -7,7 +7,7 @@ const SRC = `${ENTRY_POINT}/src`;
  * @todo make it param or something
  * @type {boolean}
  */
-const SYNC = false;
+const SYNC = true;
 /**
  * @todo make it param or something
  * @type {boolean}
