@@ -8,7 +8,7 @@
   <!-- /dev -->
 
   <!-- !dev -->
-  <!--   <script src="jspm_packages/system-csp-production.js"></script> -->jspm
+  <!--   <script src="jspm_packages/system-csp-production.js"></script> -->
   <!--   <script src="jspm_packages/system-polyfills.js"></script> -->
   <!-- /!dev -->
   <script src="config.js"></script>
@@ -30,7 +30,9 @@
       }
     });
 
-    SystemJS.import('./src/index');
+    SystemJS.import('./src/index').then(() => {
+      angular.bootstrap(document.body, ['app'])
+    })
     <!-- /dev -->
 
     <!-- !dev -->
