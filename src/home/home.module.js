@@ -60,5 +60,6 @@ export const appHome = angular
       clear: () => map.get('data').clear()
     };
   })
-  .component('appHome', HomeComponent);
+  .component('appHome', HomeComponent)
+  .name;
 

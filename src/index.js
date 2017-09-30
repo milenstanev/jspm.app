@@ -1,7 +1,9 @@
 import { angular, CoreModule } from 'milenstanev/mstanev.angular.1.x.x.core';
 import { appLazyLoadRouterModule, futureRoutesCollection } from 'milenstanev/jspm.angular.lazyload-router';
 
-import { LayoutDefault } from 'layoutDefault';
+import { LayoutDefault } from './layout-default/layout-default.module';
+//import { LayoutDefault } from 'layoutDefault';
+//import { LayoutDefault } from 'jspm.component.layoutDefault';
 import { futureRoutes } from './futureRoutes';
 
 const defaultView = '/test' || futureRoutes[0].urlPrefix;
