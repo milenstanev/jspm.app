@@ -4,45 +4,45 @@
   <meta charset="UTF-8">
   <title>Title</title>
   <!-- dev -->
-  <script src="jspm_packages/system.js"></script>
+<script src="jspm_packages/system.js"></script>
   <!-- /dev -->
 
   <!-- !dev -->
-  <!--   <script src="jspm_packages/system-csp-production.js"></script> -->
-  <!--   <script src="jspm_packages/system-polyfills.js"></script> -->
+<!-- <script src="jspm_packages/system-csp-production.js"></script> -->
+<!-- <script src="jspm_packages/system-polyfills.js"></script> -->
   <!-- /!dev -->
   <script src="config.js"></script>
 
   <script>
     <!-- dev -->
-    SystemJS.config({
-      transpiler: "plugin-babel",
-      babelOptions: {
-        presets: ['babel-preset-es2017'],
-        plugins: ['babel-plugin-transform-decorators-legacy']
-      },
-      map: {
-        "systemjs-babel-build": "npm:systemjs-plugin-babel@0.0.25/systemjs-babel-browser.js"
-      },
-      paths: {
-        "homeComponent": "src/home/home.module.js",
-        "layoutDefault": "src/layout-default/layout-default.module.js"
-      }
-    });
+SystemJS.config({
+transpiler: "plugin-babel",
+babelOptions: {
+presets: ['babel-preset-es2017'],
+plugins: ['babel-plugin-transform-decorators-legacy']
+},
+map: {
+"systemjs-babel-build": "npm:systemjs-plugin-babel@0.0.25/systemjs-babel-browser.js"
+},
+paths: {
+"homeComponent": "src/home/home.module.js",
+"layoutDefault": "src/layout-default/layout-default.module.js"
+}
+});
 
-    SystemJS.import('./src/index').then(() => {
-      angular.bootstrap(document.body, ['app'])
-    })
+SystemJS.import('./src/index').then(() => {
+angular.bootstrap(document.body, ['app'])
+})
     <!-- /dev -->
 
     <!-- !dev -->
-    <!--     SystemJS.config({ -->
-    <!--       transpiler: "babel", -->
-    <!--       paths: { -->
-    <!--         "homeComponent": "src/home/app.home.js" -->
-    <!--       } -->
-    <!--     }) -->
-    <!--     SystemJS.import('./src/index'); -->
+<!-- SystemJS.config({ -->
+<!-- transpiler: "babel", -->
+<!-- paths: { -->
+<!-- "homeComponent": "src/home/app.home.js" -->
+<!-- } -->
+<!-- }) -->
+<!-- SystemJS.import('./src/index'); -->
     <!-- /!dev -->
   </script>
 

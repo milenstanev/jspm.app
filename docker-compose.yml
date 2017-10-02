@@ -1,7 +1,7 @@
-jspm.angular.app:
+node:
   build: .
-  container_name: app
-  command: npm start
+  container_name: jspm
+  command: npm run start:dev
   ports:
    - "3000:3000"
    - "3001:3001"
