@@ -21,6 +21,6 @@ export const Module = angular
 
     return $urlRouterProvider.otherwise(defaultView || '/404');
   })
-  .component('page404', {template: '404'})
+  .component('page404', {template: '404'});
 
 angular.bootstrap(document.body, [Module.name]);
