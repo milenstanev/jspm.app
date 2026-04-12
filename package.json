@@ -7,24 +7,30 @@
   "main": "dist",
   "scripts": {
     "test": "node scripts/test.js",
-    "postinstall": "node node_modules/jspm/jspm.js install -y",
+    "test:e2e": "playwright test",
+    "test:all": "node scripts/test.js && playwright test",
+    "postinstall": "node node_modules/jspm/jspm.js install -y && node scripts/patch-lazyload-router.js",
     "docker-compose": "docker-compose up --build --force",
     "docker-start": "docker-compose start",
     "docker-stop": "docker-compose stop",
     "bash": "docker-compose exec jspm.angular.app bash",
     "start:dev": "gulp dev && node ./util/start.js",
+    "start:dev:node": "node node_modules/gulp/bin/gulp.js dev && node ./util/start.js",
     "start:prod": "gulp prod && node ./util/start.js",
+    "start:prod:node": "node node_modules/gulp/bin/gulp.js prod && node ./util/start.js",
+    "build:prod": "node node_modules/gulp/bin/gulp.js prod",
+    "serve:prod": "node node_modules/gulp/bin/gulp.js prod && node node_modules/serve/build/main.js . -s -l 3000 -n --no-port-switching",
     "build": "node ./util/dist.js app .",
     "jspm-link": "node node_modules/jspm/jspm.js link -y",
     "jspm-update": "node node_modules/jspm/jspm.js update && node node_modules/jspm/jspm.js clean",
     "jspm-unbundle": "node node_modules/jspm/jspm.js unbundle",
-    "jspm-bundle": "node node_modules/jspm/jspm.js bundle src/index.js src/bundle.js --inject --minify --no-mangle"
+    "jspm-bundle": "node node_modules/jspm/jspm.js bundle \"src/index.js + homeComponent + counterComponent + timerComponent + notesComponent\" dist/app.bundle.js --skip-source-maps"
   },
   "author": "Milen Stanev <milen.stanev@gmail.com>",
   "license": "ISC",
   "jspm": {
     "dependencies": {
-      "angular-core": "milenstanev/mstanev.angular.1.x.x.core@^0.0.3",
+      "angular-core": "milenstanev/mstanev.angular.1.x.x.core@0.0.5",
       "css": "systemjs/plugin-css@^0.1.36",
       "featureRoutes": "milenstanev/jspm.angular.lazyload-router@master",
       "immutable": "npm:immutable@^3.8.1",
@@ -38,7 +44,8 @@
       "babel-preset-es2017": "npm:babel-preset-es2017@^6.24.1",
       "babel-runtime": "npm:babel-runtime@^5.8.24",
       "core-js": "npm:core-js@^1.1.4",
-      "plugin-babel": "npm:systemjs-plugin-babel@^0.0.25"
+      "plugin-babel": "npm:systemjs-plugin-babel@^0.0.25",
+      "plugin-babel-runtime": "npm:babel-runtime@^5.8.24"
     },
     "overrides": {}
   },
@@ -46,11 +53,14 @@
     "graceful-fs": "^4.2.11"
   },
   "devDependencies": {
-    "browser-sync": "^2.18.13",
-    "eslint": "^4.7.2",
-    "gulp": "^3.9.1",
-    "gulp-dev": "^0.3.0",
-    "gulp-strip-comments": "^2.5.1",
-    "jspm": "^0.16.53"
+    "@playwright/test": "^1.49.0",
+    "browser-sync": "^3.0.4",
+    "connect-history-api-fallback": "^2.0.0",
+    "eslint": "^8.57.0",
+    "gulp": "^4.0.2",
+    "gulp-strip-comments": "^2.5.2",
+    "jspm": "^0.16.53",
+    "serve": "^14.2.6",
+    "through2": "^4.0.2"
   }
 }

@@ -83,8 +83,49 @@ test('ESLint passes on core source files', () => {
   });
 });
 
+// Test 8: Prod build completes
+test('gulp prod build completes', () => {
+  execSync('npx gulp prod', {
+    cwd: projectRoot,
+    stdio: 'pipe',
+    timeout: 60000
+  });
+});
+
+// Test 9: Prod loads SystemJS + single built bundle (no config.js / no per-module jspm fetches)
+test('index.html configured for prod after build', () => {
+  const htmlPath = path.join(projectRoot, 'index.html');
+  const content = fs.readFileSync(htmlPath, 'utf8');
+  if (content.includes('system-csp-production.js')) {
+    throw new Error('prod must use jspm_packages/system.js');
+  }
+  if (!content.includes('jspm_packages/system.js')) {
+    throw new Error('index.html missing system.js for prod');
+  }
+  if (!content.includes('dist/app.bundle.js')) {
+    throw new Error('index.html missing dist/app.bundle.js for prod');
+  }
+  if (!content.includes('dist/prod-bundle-overrides.js')) {
+    throw new Error('index.html missing dist/prod-bundle-overrides.js for prod');
+  }
+  const prodBlock = content.split('<!-- !dev -->')[1];
+  if (!prodBlock || !prodBlock.split('<!-- /!dev -->')[0]) {
+    throw new Error('index.html missing !dev block');
+  }
+  const prodInner = prodBlock.split('<!-- /!dev -->')[0];
+  if (!prodInner.includes('<script src="config.js">')) {
+    throw new Error('prod block must load config.js for SystemJS map/paths (overrides disable Babel)');
+  }
+});
+
 console.log(`\n--- Results: ${passed} passed, ${failed} failed ---\n`);
 
 if (failed > 0) {
   process.exit(1);
 }
+
+// Restore dev mode so index.html is ready for development
+execSync('node node_modules/gulp/bin/gulp.js dev', {
+  cwd: projectRoot,
+  stdio: 'pipe'
+});

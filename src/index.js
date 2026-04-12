@@ -3,7 +3,7 @@ import { appLazyLoadRouterModule, futureRoutesCollection } from 'featureRoutes';
 
 import { futureRoutes } from './futureRoutes';
 
-const defaultView = '/test' || futureRoutes[0].urlPrefix;
+const defaultView = futureRoutes[0].urlPrefix || '/home';
 Object.assign(futureRoutesCollection, [...futureRoutes]);
 
 export const Module = angular
@@ -23,4 +23,16 @@ export const Module = angular
   })
   .component('page404', {template: '404'});
 
-angular.bootstrap(document.body, [Module.name]);
+function bootstrapApp() {
+  if (!document.body || document.body.hasAttribute('data-ng-app-bootstrap')) {
+    return;
+  }
+  document.body.setAttribute('data-ng-app-bootstrap', '1');
+  angular.bootstrap(document.body, [Module.name]);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootstrapApp);
+} else {
+  bootstrapApp();
+}

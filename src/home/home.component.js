@@ -2,7 +2,7 @@
  * Home Component description or something
  */
 import template from './home.html!text';
-import { CtrlBase } from 'asd';
+import { CtrlBase } from '../lib/asd.js';
 
 function decor(ref) {
   ref.prototype.map = ref.prototype.map || new Map();

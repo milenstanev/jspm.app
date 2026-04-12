@@ -1,0 +1,7 @@
+<h2>Timer</h2>
+<div class="timer-display">{{ $ctrl.formatTime($ctrl.seconds) }}</div>
+<div class="timer-actions">
+  <button ng-click="$ctrl.start()">Start</button>
+  <button ng-click="$ctrl.pause()">Pause</button>
+  <button ng-click="$ctrl.reset()">Reset</button>
+</div>
