@@ -92,7 +92,7 @@ test('gulp prod build completes', () => {
   });
 });
 
-// Test 9: Prod loads SystemJS + single built bundle (no config.js / no per-module jspm fetches)
+// Test 9: Prod loads SystemJS, vendor/app bundles, and lazy-chunk overrides
 test('index.html configured for prod after build', () => {
   const htmlPath = path.join(projectRoot, 'index.html');
   const content = fs.readFileSync(htmlPath, 'utf8');
@@ -101,6 +101,9 @@ test('index.html configured for prod after build', () => {
   }
   if (!content.includes('jspm_packages/system.js')) {
     throw new Error('index.html missing system.js for prod');
+  }
+  if (!content.includes('dist/core.bundle.js')) {
+    throw new Error('index.html missing dist/core.bundle.js for prod');
   }
   if (!content.includes('dist/app.bundle.js')) {
     throw new Error('index.html missing dist/app.bundle.js for prod');
@@ -116,6 +119,24 @@ test('index.html configured for prod after build', () => {
   if (!prodInner.includes('<script src="config.js">')) {
     throw new Error('prod block must load config.js for SystemJS map/paths (overrides disable Babel)');
   }
+  const overridesPath = path.join(projectRoot, 'dist', 'prod-bundle-overrides.js');
+  const overrides = fs.readFileSync(overridesPath, 'utf8');
+  if (!overrides.includes('"bundles"')) {
+    throw new Error('prod-bundle-overrides.js must configure SystemJS bundles for lazy chunks');
+  }
+  if (!overrides.includes('dist/home.bundle.js')) {
+    throw new Error('prod-bundle-overrides.js must map homeComponent to dist/home.bundle.js');
+  }
+});
+
+// Test 10: Prod emits lazy route chunk files
+test('prod emits lazy route chunk bundles', () => {
+  ['home', 'counter', 'timer', 'notes'].forEach((name) => {
+    const chunkPath = path.join(projectRoot, 'dist', `${name}.bundle.js`);
+    if (!fs.existsSync(chunkPath)) {
+      throw new Error(`missing dist/${name}.bundle.js after prod build`);
+    }
+  });
 });
 
 console.log(`\n--- Results: ${passed} passed, ${failed} failed ---\n`);

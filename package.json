@@ -24,7 +24,7 @@
     "jspm-link": "node node_modules/jspm/jspm.js link -y",
     "jspm-update": "node node_modules/jspm/jspm.js update && node node_modules/jspm/jspm.js clean",
     "jspm-unbundle": "node node_modules/jspm/jspm.js unbundle",
-    "jspm-bundle": "node node_modules/jspm/jspm.js bundle \"src/index.js + homeComponent + counterComponent + timerComponent + notesComponent\" dist/app.bundle.js --skip-source-maps"
+    "jspm-bundle": "node node_modules/gulp/bin/gulp.js prod"
   },
   "author": "Milen Stanev <milen.stanev@gmail.com>",
   "license": "ISC",

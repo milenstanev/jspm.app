@@ -49,10 +49,12 @@ node util/start.js
 
 ### Production
 
-- Builds one bundle: `dist/app.bundle.js`.
-- Generates `dist/prod-bundle-overrides.js` for prod-only loader overrides.
-- Disables in-browser transpilation and extension auto-resolution in prod (`transpiler: false`, `defaultJSExtensions: false`).
-- Still loads `config.js` for base JSPM mapping, then applies prod overrides, then imports `./src/index.js`.
+- Builds a shared vendor bundle: `dist/core.bundle.js` (`angular-core` and its dependencies).
+- Builds the app shell: `dist/app.bundle.js` (`src/index.js`, lazyload-router, routes; excludes vendor and lazy route modules).
+- Builds one lazy chunk per route: `dist/home.bundle.js`, `dist/counter.bundle.js`, `dist/timer.bundle.js`, `dist/notes.bundle.js`.
+- Generates `dist/prod-bundle-overrides.js` with SystemJS `bundles` mapping so `System.import('homeComponent')` fetches the matching chunk on navigation.
+- Disables in-browser transpilation in prod (`transpiler: false`, `defaultJSExtensions: false`).
+- Loads `config.js` for base JSPM mapping, then prod overrides, then `core.bundle.js` + `app.bundle.js`, then imports `./src/index.js`.
 
 Run:
 
