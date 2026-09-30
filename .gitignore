@@ -14,3 +14,7 @@ yarn.lock
 !/src/bundle.js.map
 !/src/bundle.js
 /src/home/.idea/
+/test-results/
+/playwright-report/
+/blob-report/
+/dist/
