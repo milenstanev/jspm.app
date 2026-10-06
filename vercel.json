@@ -4,6 +4,7 @@
   "installCommand": "npm install",
   "buildCommand": "npm run build:vercel",
   "outputDirectory": "public",
+  "regions": ["iad1"],
   "rewrites": [
     {
       "source": "/((?!dist/|jspm_packages/|config\\.js).*)",

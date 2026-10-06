@@ -39,6 +39,12 @@ function copyDir(src, dest) {
   }
 }
 
+console.log('Ensuring feature module aliases in config.js...');
+execFileSync(process.execPath, [path.join(root, 'scripts', 'ensure-feature-module-paths.js')], {
+  cwd: root,
+  stdio: 'inherit',
+});
+
 console.log('Building production bundles...');
 execFileSync(process.execPath, [path.join(root, 'node_modules', 'gulp', 'bin', 'gulp.js'), 'prod'], {
   cwd: root,
