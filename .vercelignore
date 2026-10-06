@@ -2,7 +2,6 @@ node_modules
 .git
 jspm_packages
 dist
-public
 src/angular.core
 src/angular.lazyload-router
 src/angular.template
@@ -15,3 +14,6 @@ blob-report
 *.log
 start-dev.cmd
 serve-prod.cmd
+Dockerfile
+docker-compose.yml
+.dockerignore

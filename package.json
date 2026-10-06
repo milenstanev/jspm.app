@@ -9,7 +9,7 @@
     "test": "node scripts/test.js",
     "test:e2e": "playwright test",
     "test:all": "node scripts/test.js && playwright test",
-    "postinstall": "node node_modules/jspm/jspm.js install -y && node scripts/ensure-feature-module-paths.js && node scripts/patch-lazyload-router.js",
+    "postinstall": "node scripts/configure-jspm-github-auth.js && node node_modules/jspm/jspm.js install -y && node scripts/ensure-feature-module-paths.js && node scripts/patch-lazyload-router.js",
     "docker-compose": "docker-compose up --build --force",
     "docker-start": "docker-compose start",
     "docker-stop": "docker-compose stop",

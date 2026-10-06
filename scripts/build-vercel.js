@@ -23,21 +23,15 @@ function copyFile(src, dest) {
   fs.copyFileSync(src, dest);
 }
 
-function copyDir(src, dest) {
-  if (!fs.existsSync(src)) {
-    throw new Error(`Missing required path: ${src}`);
-  }
-  ensureDir(dest);
-  for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
-    const from = path.join(src, entry.name);
-    const to = path.join(dest, entry.name);
-    if (entry.isDirectory()) {
-      copyDir(from, to);
-    } else {
-      copyFile(from, to);
-    }
-  }
-}
+const requiredDist = [
+  'prod-bundle-overrides.js',
+  'core.bundle.js',
+  'app.bundle.js',
+  'home.bundle.js',
+  'counter.bundle.js',
+  'timer.bundle.js',
+  'notes.bundle.js',
+];
 
 console.log('Ensuring feature module aliases in config.js...');
 execFileSync(process.execPath, [path.join(root, 'scripts', 'ensure-feature-module-paths.js')], {
@@ -55,9 +49,7 @@ const required = [
   'index.html',
   'config.js',
   path.join('jspm_packages', 'system.js'),
-  path.join('dist', 'prod-bundle-overrides.js'),
-  path.join('dist', 'core.bundle.js'),
-  path.join('dist', 'app.bundle.js'),
+  ...requiredDist.map((name) => path.join('dist', name)),
 ];
 
 for (const rel of required) {
@@ -69,19 +61,28 @@ for (const rel of required) {
 console.log('Assembling public/...');
 rmrf(publicDir);
 ensureDir(publicDir);
+ensureDir(path.join(publicDir, 'dist'));
+ensureDir(path.join(publicDir, 'jspm_packages'));
 
 copyFile(path.join(root, 'index.html'), path.join(publicDir, 'index.html'));
 copyFile(path.join(root, 'config.js'), path.join(publicDir, 'config.js'));
-copyDir(path.join(root, 'dist'), path.join(publicDir, 'dist'));
 
-// SystemJS loader (+ any sibling loader assets under jspm_packages root)
-ensureDir(path.join(publicDir, 'jspm_packages'));
-for (const name of fs.readdirSync(path.join(root, 'jspm_packages'))) {
+for (const name of requiredDist) {
+  copyFile(path.join(root, 'dist', name), path.join(publicDir, 'dist', name));
+}
+
+// Only SystemJS loader files needed at runtime in prod.
+for (const name of [
+  'system.js',
+  'system.js.map',
+  'system.src.js',
+  'system-polyfills.js',
+  'system-polyfills.js.map',
+  'system-polyfills.src.js',
+]) {
   const from = path.join(root, 'jspm_packages', name);
-  const to = path.join(publicDir, 'jspm_packages', name);
-  const st = fs.statSync(from);
-  if (st.isFile() && /\.(js|map|json|css)$/i.test(name)) {
-    copyFile(from, to);
+  if (fs.existsSync(from)) {
+    copyFile(from, path.join(publicDir, 'jspm_packages', name));
   }
 }
 

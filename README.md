@@ -83,44 +83,28 @@ npx playwright test
 
 ## Vercel deployment
 
-This app deploys as a static site.
+This app deploys as a **static site** from the committed `public/` folder.
 
-### What Vercel builds
-
-1. `npm install` (runs JSPM install via `postinstall`)
-2. `npm run build:vercel`
-   - runs `gulp prod`
-   - copies runtime assets into `public/`:
-     - `index.html`
-     - `config.js`
-     - `dist/*`
-     - `jspm_packages/system.js` (+ root loader assets)
-
-Config lives in `vercel.json` (`outputDirectory: public`).
-
-### First-time local link
+### Build locally, then commit `public/`
 
 ```bash
-npx vercel login
-npx vercel link
-npx vercel deploy
-npx vercel --prod
+npm run build:vercel
+git add public
+git commit -m "Refresh Vercel public build"
+git push
 ```
 
-### CI
+Vercel serves `public/` with no remote `jspm install` (avoids GitHub rate limits).
 
-- GitHub Actions: `.github/workflows/vercel-deploy.yml`
-- GitLab CI: `.gitlab-ci.yml`
+### Optional: rebuild on Vercel
 
-Set these secrets/variables in the CI provider:
+If you want remote builds again, set:
 
-- `VERCEL_TOKEN`
-- `VERCEL_ORG_ID`
-- `VERCEL_PROJECT_ID`
+- `JSPM_GITHUB_AUTH_TOKEN` = GitHub PAT with `public_repo`
 
-`VERCEL_ORG_ID` and `VERCEL_PROJECT_ID` come from `.vercel/project.json` after `vercel link`.
+and restore install/build commands in `vercel.json`.
 
-Current linked project:
+### Linked project
 
 - Project: `jspm-app`
 - Team: `milenstanev-9298s-projects`

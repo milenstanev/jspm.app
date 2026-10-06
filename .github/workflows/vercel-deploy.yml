@@ -27,7 +27,7 @@ jobs:
             vercel pull --yes --environment=preview
           fi
 
-      - name: Deploy
+      - name: Deploy committed public/
         run: |
           if [ "${{ github.ref }}" = "refs/heads/master" ]; then
             vercel deploy --prod --yes
