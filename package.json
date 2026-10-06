@@ -31,7 +31,7 @@
   "author": "Milen Stanev <milen.stanev@gmail.com>",
   "license": "ISC",
   "engines": {
-    "node": "20.x"
+    "node": "24.x"
   },
   "jspm": {
     "dependencies": {
