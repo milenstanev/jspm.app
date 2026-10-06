@@ -119,3 +119,10 @@ Set these secrets/variables in the CI provider:
 - `VERCEL_PROJECT_ID`
 
 `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID` come from `.vercel/project.json` after `vercel link`.
+
+Current linked project:
+
+- Project: `jspm-app`
+- Team: `milenstanev-9298s-projects`
+- Production URL: https://jspm-app-milenstanev-9298s-projects.vercel.app
+- Branch alias: https://jspm-app-git-feature-rebuild-milenstanev-9298s-projects.vercel.app
