@@ -1,7 +1,7 @@
 node_modules
 .git
-jspm_packages
-dist
+/jspm_packages
+/dist
 src/angular.core
 src/angular.lazyload-router
 src/angular.template
