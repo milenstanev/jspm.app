@@ -1,0 +1,36 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    branches: [master, feature/rebuild]
+  pull_request:
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Pull Vercel project settings
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/master" ]; then
+            vercel pull --yes --environment=production
+          else
+            vercel pull --yes --environment=preview
+          fi
+
+      - name: Deploy
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/master" ]; then
+            vercel deploy --prod --yes
+          else
+            vercel deploy --yes
+          fi

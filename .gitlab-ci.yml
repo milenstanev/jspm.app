@@ -1,0 +1,40 @@
+# Deploy static production build to Vercel.
+# Required CI/CD variables:
+#   VERCEL_TOKEN
+#   VERCEL_ORG_ID
+#   VERCEL_PROJECT_ID
+#
+# Note: this repo's primary remotes may be GitHub; keep this file if
+# you also mirror to GitLab and want the same deploy pipeline there.
+
+stages:
+  - deploy
+
+.deploy_base:
+  image: node:20-bookworm
+  before_script:
+    - npm install -g vercel@latest
+
+deploy_preview:
+  extends: .deploy_base
+  stage: deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+  script:
+    - vercel pull --yes --environment=preview --token="$VERCEL_TOKEN"
+    - vercel deploy --yes --token="$VERCEL_TOKEN"
+  environment:
+    name: preview/$CI_COMMIT_REF_SLUG
+    deployment_tier: development
+
+deploy_production:
+  extends: .deploy_base
+  stage: deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+    - vercel deploy --prod --yes --token="$VERCEL_TOKEN"
+  environment:
+    name: production
+    deployment_tier: production

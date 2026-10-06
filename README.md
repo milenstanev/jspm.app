@@ -80,3 +80,42 @@ node scripts/test.js
 ```bash
 npx playwright test
 ```
+
+## Vercel deployment
+
+This app deploys as a static site.
+
+### What Vercel builds
+
+1. `npm install` (runs JSPM install via `postinstall`)
+2. `npm run build:vercel`
+   - runs `gulp prod`
+   - copies runtime assets into `public/`:
+     - `index.html`
+     - `config.js`
+     - `dist/*`
+     - `jspm_packages/system.js` (+ root loader assets)
+
+Config lives in `vercel.json` (`outputDirectory: public`).
+
+### First-time local link
+
+```bash
+npx vercel login
+npx vercel link
+npx vercel deploy
+npx vercel --prod
+```
+
+### CI
+
+- GitHub Actions: `.github/workflows/vercel-deploy.yml`
+- GitLab CI: `.gitlab-ci.yml`
+
+Set these secrets/variables in the CI provider:
+
+- `VERCEL_TOKEN`
+- `VERCEL_ORG_ID`
+- `VERCEL_PROJECT_ID`
+
+`VERCEL_ORG_ID` and `VERCEL_PROJECT_ID` come from `.vercel/project.json` after `vercel link`.

@@ -1,0 +1,17 @@
+node_modules
+.git
+jspm_packages
+dist
+public
+src/angular.core
+src/angular.lazyload-router
+src/angular.template
+src/angular.test-module
+e2e
+test-results
+playwright-report
+blob-report
+.env.local
+*.log
+start-dev.cmd
+serve-prod.cmd
