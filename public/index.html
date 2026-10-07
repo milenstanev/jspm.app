@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>jspm.app - Features</title>
+
+
+
+  <!-- dev -->
+<!--
+<script src="jspm_packages/system.js"></script>
+
+  <script src="config.js"></script>
+
+  <script>SystemJS.import('./src/index.js');</script>
+-->
+<!-- /dev -->
+
+
+
+  <!-- !dev -->
+<script src="jspm_packages/system.js"></script>
+
+  <script src="config.js"></script>
+
+  <script src="dist/prod-bundle-overrides.js"></script>
+
+  <script src="dist/core.bundle.js"></script>
+
+  <script src="dist/app.bundle.js"></script>
+
+  <script>SystemJS.import('./src/index.js');</script>
+<!-- /!dev -->
+
+</head>
+
+<body ng-cloak>
+
+
+
+<nav style="padding:1rem;background:#f0f0f0;margin-bottom:1rem">
+
+  <a href="#!/home">Home</a> |
+
+  <a href="#!/counter">Counter</a> |
+
+  <a href="#!/timer">Timer</a> |
+
+  <a href="#!/notes">Notes</a>
+
+</nav>
+
+
+
+<div ui-view></div>
+
+
+
+</body>
+
+</html>
+

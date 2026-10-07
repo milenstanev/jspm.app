@@ -18,3 +18,6 @@ yarn.lock
 /playwright-report/
 /blob-report/
 /dist/
+.vercel
+
+.env*

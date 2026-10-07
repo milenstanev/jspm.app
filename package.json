@@ -9,7 +9,7 @@
     "test": "node scripts/test.js",
     "test:e2e": "playwright test",
     "test:all": "node scripts/test.js && playwright test",
-    "postinstall": "node node_modules/jspm/jspm.js install -y && node scripts/patch-lazyload-router.js",
+    "postinstall": "node scripts/configure-jspm-github-auth.js && node node_modules/jspm/jspm.js install -y && node scripts/ensure-feature-module-paths.js && node scripts/patch-lazyload-router.js",
     "docker-compose": "docker-compose up --build --force",
     "docker-start": "docker-compose start",
     "docker-stop": "docker-compose stop",
@@ -19,6 +19,8 @@
     "start:prod": "gulp prod && node ./util/start.js",
     "start:prod:node": "node node_modules/gulp/bin/gulp.js prod && node ./util/start.js",
     "build:prod": "node node_modules/gulp/bin/gulp.js prod",
+    "build:vercel": "node scripts/build-vercel.js",
+    "deploy:vercel": "npx vercel deploy --prod --yes",
     "serve:prod": "node node_modules/gulp/bin/gulp.js prod && node node_modules/serve/build/main.js . -s -l 3000 -n --no-port-switching",
     "build": "node ./util/dist.js app .",
     "jspm-link": "node node_modules/jspm/jspm.js link -y",
@@ -28,6 +30,9 @@
   },
   "author": "Milen Stanev <milen.stanev@gmail.com>",
   "license": "ISC",
+  "engines": {
+    "node": "24.x"
+  },
   "jspm": {
     "dependencies": {
       "angular-core": "milenstanev/mstanev.angular.1.x.x.core@0.0.5",
@@ -61,6 +66,7 @@
     "gulp-strip-comments": "^2.5.2",
     "jspm": "^0.16.53",
     "serve": "^14.2.6",
-    "through2": "^4.0.2"
+    "through2": "^4.0.2",
+    "vercel": "^62.5.0"
   }
 }

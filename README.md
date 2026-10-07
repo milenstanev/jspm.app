@@ -80,3 +80,33 @@ node scripts/test.js
 ```bash
 npx playwright test
 ```
+
+## Vercel deployment
+
+This app deploys as a **static site** from the committed `public/` folder.
+
+### Build locally, then commit `public/`
+
+```bash
+npm run build:vercel
+git add public
+git commit -m "Refresh Vercel public build"
+git push
+```
+
+Vercel serves `public/` with no remote `jspm install` (avoids GitHub rate limits).
+
+### Optional: rebuild on Vercel
+
+If you want remote builds again, set:
+
+- `JSPM_GITHUB_AUTH_TOKEN` = GitHub PAT with `public_repo`
+
+and restore install/build commands in `vercel.json`.
+
+### Linked project
+
+- Project: `jspm-app`
+- Team: `milenstanev-9298s-projects`
+- Production URL: https://jspm-app-milenstanev-9298s-projects.vercel.app
+- Branch alias: https://jspm-app-git-feature-rebuild-milenstanev-9298s-projects.vercel.app
