@@ -48,6 +48,7 @@ execFileSync(process.execPath, [path.join(root, 'node_modules', 'gulp', 'bin', '
 const required = [
   'index.html',
   'config.js',
+  path.join('src', 'app.css'),
   path.join('jspm_packages', 'system.js'),
   ...requiredDist.map((name) => path.join('dist', name)),
 ];
@@ -66,6 +67,8 @@ ensureDir(path.join(publicDir, 'jspm_packages'));
 
 copyFile(path.join(root, 'index.html'), path.join(publicDir, 'index.html'));
 copyFile(path.join(root, 'config.js'), path.join(publicDir, 'config.js'));
+ensureDir(path.join(publicDir, 'src'));
+copyFile(path.join(root, 'src', 'app.css'), path.join(publicDir, 'src', 'app.css'));
 
 for (const name of requiredDist) {
   copyFile(path.join(root, 'dist', name), path.join(publicDir, 'dist', name));

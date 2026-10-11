@@ -73,6 +73,9 @@ test('index.html configured for dev mode', () => {
   if (!content.includes('SystemJS.import') || !content.includes('./src/index')) {
     throw new Error('index.html missing SystemJS.import for dev mode');
   }
+  if (!content.includes('bootstrap.min.css') || !content.includes('src/app.css')) {
+    throw new Error('index.html missing Bootstrap / app stylesheet');
+  }
 });
 
 // Test 7: ESLint passes on core source files

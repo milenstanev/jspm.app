@@ -1,7 +1,13 @@
-<h2>Timer</h2>
-<div class="timer-display">{{ $ctrl.formatTime($ctrl.seconds) }}</div>
-<div class="timer-actions">
-  <button ng-click="$ctrl.start()">Start</button>
-  <button ng-click="$ctrl.pause()">Pause</button>
-  <button ng-click="$ctrl.reset()">Reset</button>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Timer</h2>
+  </div>
+  <div class="panel-body text-center">
+    <div class="timer-display feature-display well">{{ $ctrl.formatTime($ctrl.seconds) }}</div>
+    <div class="timer-actions btn-group">
+      <button type="button" class="btn btn-success" ng-click="$ctrl.start()">Start</button>
+      <button type="button" class="btn btn-default" ng-click="$ctrl.pause()">Pause</button>
+      <button type="button" class="btn btn-warning" ng-click="$ctrl.reset()">Reset</button>
+    </div>
+  </div>
 </div>

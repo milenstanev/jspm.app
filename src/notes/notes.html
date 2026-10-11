@@ -1,14 +1,25 @@
-<h2>Notes</h2>
-<form ng-submit="$ctrl.add()" novalidate>
-  <input type="text"
-         ng-model="$ctrl.input"
-         placeholder="New note..."
-         aria-label="New note">
-  <button type="submit">Add</button>
-</form>
-<ul class="notes-list">
-  <li ng-repeat="item in $ctrl.items track by $index">
-    {{ item }}
-    <button ng-click="$ctrl.remove($index)">Remove</button>
-  </li>
-</ul>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Notes</h2>
+  </div>
+  <div class="panel-body">
+    <form class="form-inline" ng-submit="$ctrl.add()" novalidate>
+      <div class="form-group">
+        <input type="text"
+               class="form-control"
+               ng-model="$ctrl.input"
+               placeholder="New note..."
+               aria-label="New note">
+      </div>
+      <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+    <ul class="notes-list list-group">
+      <li class="list-group-item" ng-repeat="item in $ctrl.items track by $index">
+        {{ item }}
+        <button type="button"
+                class="btn btn-danger btn-xs pull-right"
+                ng-click="$ctrl.remove($index)">Remove</button>
+      </li>
+    </ul>
+  </div>
+</div>
