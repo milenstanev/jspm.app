@@ -6,7 +6,13 @@
 
   <meta charset="UTF-8">
 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>jspm.app - Features</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="src/app.css">
 
 
 
@@ -42,25 +48,66 @@
 
 
 
-<nav style="padding:1rem;background:#f0f0f0;margin-bottom:1rem">
+<nav class="navbar navbar-inverse navbar-static-top">
 
-  <a href="#!/home">Home</a> |
+  <div class="container">
 
-  <a href="#!/counter">Counter</a> |
+    <div class="navbar-header">
 
-  <a href="#!/timer">Timer</a> |
+      <button type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#app-nav"
+              aria-expanded="false">
 
-  <a href="#!/notes">Notes</a>
+        <span class="sr-only">Toggle navigation</span>
+
+        <span class="icon-bar"></span>
+
+        <span class="icon-bar"></span>
+
+        <span class="icon-bar"></span>
+
+      </button>
+
+      <a class="navbar-brand" href="#!/home">jspm.app</a>
+
+    </div>
+
+    <div class="collapse navbar-collapse" id="app-nav">
+
+      <ul class="nav navbar-nav">
+
+        <li><a href="#!/home">Home</a></li>
+
+        <li><a href="#!/counter">Counter</a></li>
+
+        <li><a href="#!/timer">Timer</a></li>
+
+        <li><a href="#!/notes">Notes</a></li>
+
+      </ul>
+
+    </div>
+
+  </div>
 
 </nav>
 
 
 
-<div ui-view></div>
+<div class="container app-shell">
+
+  <div ui-view></div>
+
+</div>
 
 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
 
 </body>
 
 </html>
-

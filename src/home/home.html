@@ -1,18 +1,32 @@
-<h1>{{ $ctrl.title }}</h1>
-<p>Hello, {{ $ctrl.user.name }}!</p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title">{{ $ctrl.title }}</h1>
+  </div>
+  <div class="panel-body">
+    <p class="lead">Hello, {{ $ctrl.user.name }}!</p>
 
-<div ng-if="$ctrl.data.length"
-    ng-repeat="items in $ctrl.data"
-    ng-click="$ctrl.removeItem(items)">
-  {{ items.title }}
+    <div class="list-group" ng-if="$ctrl.data.length">
+      <button type="button"
+              class="list-group-item home-item"
+              ng-repeat="items in $ctrl.data"
+              ng-click="$ctrl.removeItem(items)">
+        {{ items.title }}
+        <span class="text-muted pull-right">remove</span>
+      </button>
+    </div>
+
+    <form class="form-inline" novalidate name="form">
+      <div class="form-group">
+        <input type="text"
+               class="form-control"
+               name="theText"
+               ng-model="$ctrl.theText"
+               required>
+      </div>
+      <button type="button"
+              class="btn btn-primary"
+              ng-disabled="form.theText.$invalid"
+              ng-click="$ctrl.add({title: $ctrl.theText})">Add</button>
+    </form>
+  </div>
 </div>
-
-<form novalidate name="form">
-  <input type="text"
-         name="theText"
-         ng-model="$ctrl.theText"
-         required>
-  <button
-      ng-disabled="form.theText.$invalid"
-      ng-click="$ctrl.add({title: $ctrl.theText})">Add</button>
-</form>
