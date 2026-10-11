@@ -79,7 +79,7 @@ System.register("src/notes/notes.html!github:systemjs/plugin-text@0.0.11.js", []
   return {
     setters: [],
     execute: function () {
-      _export("__useDefault", __useDefault = "<h2>Notes</h2>\r\n<form ng-submit=\"$ctrl.add()\" novalidate>\r\n  <input type=\"text\"\r\n         ng-model=\"$ctrl.input\"\r\n         placeholder=\"New note...\"\r\n         aria-label=\"New note\">\r\n  <button type=\"submit\">Add</button>\r\n</form>\r\n<ul class=\"notes-list\">\r\n  <li ng-repeat=\"item in $ctrl.items track by $index\">\r\n    {{ item }}\r\n    <button ng-click=\"$ctrl.remove($index)\">Remove</button>\r\n  </li>\r\n</ul>\r\n");
+      _export("__useDefault", __useDefault = "<div class=\"panel panel-default\">\r\n  <div class=\"panel-heading\">\r\n    <h2 class=\"panel-title\">Notes</h2>\r\n  </div>\r\n  <div class=\"panel-body\">\r\n    <form class=\"form-inline\" ng-submit=\"$ctrl.add()\" novalidate>\r\n      <div class=\"form-group\">\r\n        <input type=\"text\"\r\n               class=\"form-control\"\r\n               ng-model=\"$ctrl.input\"\r\n               placeholder=\"New note...\"\r\n               aria-label=\"New note\">\r\n      </div>\r\n      <button type=\"submit\" class=\"btn btn-primary\">Add</button>\r\n    </form>\r\n    <ul class=\"notes-list list-group\">\r\n      <li class=\"list-group-item\" ng-repeat=\"item in $ctrl.items track by $index\">\r\n        {{ item }}\r\n        <button type=\"button\"\r\n                class=\"btn btn-danger btn-xs pull-right\"\r\n                ng-click=\"$ctrl.remove($index)\">Remove</button>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</div>\r\n");
 
       _export("__useDefault", __useDefault);
 

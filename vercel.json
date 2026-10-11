@@ -7,7 +7,7 @@
   "regions": ["iad1"],
   "rewrites": [
     {
-      "source": "/((?!dist/|jspm_packages/|config\\.js).*)",
+      "source": "/((?!dist/|jspm_packages/|src/|config\\.js).*)",
       "destination": "/index.html"
     }
   ],

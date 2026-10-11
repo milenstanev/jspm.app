@@ -79,7 +79,7 @@ System.register("src/counter/counter.html!github:systemjs/plugin-text@0.0.11.js"
   return {
     setters: [],
     execute: function () {
-      _export("__useDefault", __useDefault = "<h2>Counter</h2>\r\n<div class=\"counter-display\">{{ $ctrl.value }}</div>\r\n<div class=\"counter-actions\">\r\n  <button ng-click=\"$ctrl.decrement()\">Decrement</button>\r\n  <button ng-click=\"$ctrl.increment()\">Increment</button>\r\n</div>\r\n");
+      _export("__useDefault", __useDefault = "<div class=\"panel panel-default\">\r\n  <div class=\"panel-heading\">\r\n    <h2 class=\"panel-title\">Counter</h2>\r\n  </div>\r\n  <div class=\"panel-body text-center\">\r\n    <div class=\"counter-display feature-display well\">{{ $ctrl.value }}</div>\r\n    <div class=\"counter-actions btn-group\">\r\n      <button type=\"button\" class=\"btn btn-default\" ng-click=\"$ctrl.decrement()\">Decrement</button>\r\n      <button type=\"button\" class=\"btn btn-primary\" ng-click=\"$ctrl.increment()\">Increment</button>\r\n    </div>\r\n  </div>\r\n</div>\r\n");
 
       _export("__useDefault", __useDefault);
 

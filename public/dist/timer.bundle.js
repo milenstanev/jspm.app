@@ -79,7 +79,7 @@ System.register("src/timer/timer.html!github:systemjs/plugin-text@0.0.11.js", []
   return {
     setters: [],
     execute: function () {
-      _export("__useDefault", __useDefault = "<h2>Timer</h2>\r\n<div class=\"timer-display\">{{ $ctrl.formatTime($ctrl.seconds) }}</div>\r\n<div class=\"timer-actions\">\r\n  <button ng-click=\"$ctrl.start()\">Start</button>\r\n  <button ng-click=\"$ctrl.pause()\">Pause</button>\r\n  <button ng-click=\"$ctrl.reset()\">Reset</button>\r\n</div>\r\n");
+      _export("__useDefault", __useDefault = "<div class=\"panel panel-default\">\r\n  <div class=\"panel-heading\">\r\n    <h2 class=\"panel-title\">Timer</h2>\r\n  </div>\r\n  <div class=\"panel-body text-center\">\r\n    <div class=\"timer-display feature-display well\">{{ $ctrl.formatTime($ctrl.seconds) }}</div>\r\n    <div class=\"timer-actions btn-group\">\r\n      <button type=\"button\" class=\"btn btn-success\" ng-click=\"$ctrl.start()\">Start</button>\r\n      <button type=\"button\" class=\"btn btn-default\" ng-click=\"$ctrl.pause()\">Pause</button>\r\n      <button type=\"button\" class=\"btn btn-warning\" ng-click=\"$ctrl.reset()\">Reset</button>\r\n    </div>\r\n  </div>\r\n</div>\r\n");
 
       _export("__useDefault", __useDefault);
 
