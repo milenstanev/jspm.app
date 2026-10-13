@@ -5,7 +5,7 @@ alwaysApply: true
 
 # Production split and Vercel
 
-This app is **JSPM 0.16 + SystemJS**. Production is the committed **`public/`** folder. Vercel must **not** `npm install` or `gulp prod` (GitHub rate limits). Keep `vercel.json` `installCommand`/`buildCommand` null, `outputDirectory: public`.
+This app is **JSPM 0.16 + SystemJS**. Production is the committed **`public/`** folder. Vercel must **not** `npm install` or `gulp prod` (GitHub rate limits). Keep `vercel.json` `installCommand`/`buildCommand` as empty strings (`""`), `outputDirectory: public`. Do not use `null` — Vercel then falls back to `npm install` + `npm run build`.
 
 Refresh `public/` locally with `npm run build:vercel`, then commit `public/`. Do not invent cache-bust files (no `form1`, no `CHUNK_REV`).
 

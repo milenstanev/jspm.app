@@ -115,7 +115,7 @@ test('home is a Bootstrap 3 schema form, not a todo list', () => {
 
 test('Vercel serves committed public/ and does not rebuild with jspm', () => {
   const vercel = JSON.parse(fs.readFileSync(path.join(projectRoot, 'vercel.json'), 'utf8'));
-  if (vercel.installCommand != null || vercel.buildCommand != null) {
+  if (vercel.installCommand || vercel.buildCommand) {
     throw new Error('vercel.json must not install or build on Vercel (jspm/GitHub rate limits)');
   }
   if (vercel.outputDirectory !== 'public') {
