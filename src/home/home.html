@@ -12,7 +12,9 @@
           ng-if="$ctrl.record && $ctrl.fields.length"
           ng-submit="$ctrl.submit()">
       <div class="form-group" ng-repeat="key in $ctrl.fields">
-        <label ng-attr-for="field-{{ key }}">{{ key }}</label>
+        <label class="control-label"
+               ng-attr-for="field-{{ key }}"
+               ng-if="$ctrl.schema[key].formType !== 'checkbox'">{{ key }}</label>
 
         <select class="form-control"
                 ng-if="$ctrl.schema[key].formType === 'select'"
@@ -21,10 +23,15 @@
                 ng-options="opt.val as opt.text for opt in $ctrl.schema[key].options">
         </select>
 
-        <input type="checkbox"
-               ng-if="$ctrl.schema[key].formType === 'checkbox'"
-               ng-attr-id="field-{{ key }}"
-               ng-model="$ctrl.record[key]">
+        <div class="checkbox"
+             ng-if="$ctrl.schema[key].formType === 'checkbox'">
+          <label>
+            <input type="checkbox"
+                   ng-attr-id="field-{{ key }}"
+                   ng-model="$ctrl.record[key]">
+            {{ key }}
+          </label>
+        </div>
 
         <input type="text"
                class="form-control"
