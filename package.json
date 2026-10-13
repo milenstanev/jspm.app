@@ -6,7 +6,8 @@
   "repository": "https://github.com/milenstanev/jspm.angular.template.git",
   "main": "dist",
   "scripts": {
-    "test": "node scripts/test.js",
+    "test": "node --test users-form.test.js && node scripts/test.js",
+    "test:unit": "node --test users-form.test.js scripts/copy-jspm-runtime.test.js",
     "test:e2e": "playwright test",
     "test:all": "node scripts/test.js && playwright test",
     "postinstall": "node scripts/configure-jspm-github-auth.js && node node_modules/jspm/jspm.js install -y && node scripts/ensure-feature-module-paths.js && node scripts/patch-lazyload-router.js",

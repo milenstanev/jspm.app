@@ -50,6 +50,7 @@ const required = [
   'config.js',
   'desktop-ui-guest.js',
   'users-form.js',
+  'users-form.lib.js',
   path.join('src', 'app.css'),
   path.join('jspm_packages', 'system.js'),
   ...requiredDist.map((name) => path.join('dist', name)),
@@ -74,6 +75,10 @@ copyFile(
   path.join(publicDir, 'desktop-ui-guest.js')
 );
 copyFile(path.join(root, 'users-form.js'), path.join(publicDir, 'users-form.js'));
+copyFile(
+  path.join(root, 'users-form.lib.js'),
+  path.join(publicDir, 'users-form.lib.js')
+);
 ensureDir(path.join(publicDir, 'src'));
 copyFile(path.join(root, 'src', 'app.css'), path.join(publicDir, 'src', 'app.css'));
 
@@ -81,18 +86,7 @@ for (const name of requiredDist) {
   copyFile(path.join(root, 'dist', name), path.join(publicDir, 'dist', name));
 }
 
-for (const name of [
-  'system.js',
-  'system.js.map',
-  'system.src.js',
-  'system-polyfills.js',
-  'system-polyfills.js.map',
-  'system-polyfills.src.js',
-]) {
-  const from = path.join(root, 'jspm_packages', name);
-  if (fs.existsSync(from)) {
-    copyFile(from, path.join(publicDir, 'jspm_packages', name));
-  }
-}
+const { copyJspmRuntime } = require('./copy-jspm-runtime');
+copyJspmRuntime(root, publicDir);
 
 console.log('Vercel public build ready:', publicDir);
