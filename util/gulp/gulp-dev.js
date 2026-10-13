@@ -19,6 +19,7 @@ const SHARED_VENDOR = 'angular-core';
 const PROD_CORE_BUNDLE = 'dist/core.bundle.js';
 const PROD_APP_BUNDLE = 'dist/app.bundle.js';
 const PROD_OVERRIDES = 'dist/prod-bundle-overrides.js';
+const CHUNK_REV = 'form1';
 
 const PROD_MAIN_EXPR = [
   'src/index.js',
@@ -64,9 +65,17 @@ function writeProdBundleOverrides() {
   const paths = {};
   const bundles = {};
   const meta = {};
+  bundles[PROD_APP_BUNDLE] = ['src/index.js'];
+  meta[PROD_APP_BUNDLE] = { format: 'register', transpiler: false };
+  bundles[PROD_CORE_BUNDLE] = [
+    'angular-core',
+    'github:milenstanev/mstanev.angular.1.x.x.core@0.0.5.js',
+  ];
+  meta[PROD_CORE_BUNDLE] = { format: 'register', transpiler: false };
+
   LAZY_ROUTE_MODULES.forEach((moduleId) => {
     const chunkName = moduleId.replace(/Component$/, '');
-    const chunkFile = `dist/${chunkName}.bundle.js`;
+    const chunkFile = `dist/${chunkName}.bundle.${CHUNK_REV}.js`;
     paths[moduleId] = moduleId;
     bundles[chunkFile] = [moduleId];
     meta[chunkFile] = { format: 'register', transpiler: false };
@@ -92,7 +101,7 @@ function buildProdBundles() {
 
   LAZY_ROUTE_MODULES.forEach((moduleId) => {
     const chunkName = moduleId.replace(/Component$/, '');
-    const chunkFile = `dist/${chunkName}.bundle.js`;
+    const chunkFile = `dist/${chunkName}.bundle.${CHUNK_REV}.js`;
     runJspmBundle(`${moduleId} - ${SHARED_VENDOR}`, chunkFile);
     ensureBundleMarker(path.join(base, chunkFile));
   });
