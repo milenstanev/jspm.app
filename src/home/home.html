@@ -1,32 +1,43 @@
-<div class="panel panel-default">
+<div class="panel panel-default" data-testid="jspm-user-form">
   <div class="panel-heading">
     <h1 class="panel-title">{{ $ctrl.title }}</h1>
   </div>
   <div class="panel-body">
-    <p class="lead">Hello, {{ $ctrl.user.name }}!</p>
+    <p class="text-muted" ng-if="$ctrl.loading">Loading schema…</p>
+    <p class="text-danger" ng-if="$ctrl.error" role="alert">{{ $ctrl.error }}</p>
+    <p class="text-success" ng-if="$ctrl.status" role="status">{{ $ctrl.status }}</p>
 
-    <div class="list-group" ng-if="$ctrl.data.length">
-      <button type="button"
-              class="list-group-item home-item"
-              ng-repeat="items in $ctrl.data"
-              ng-click="$ctrl.removeItem(items)">
-        {{ items.title }}
-        <span class="text-muted pull-right">remove</span>
-      </button>
-    </div>
+    <form name="userForm"
+          novalidate
+          ng-if="$ctrl.record && $ctrl.fields.length"
+          ng-submit="$ctrl.submit()">
+      <div class="form-group" ng-repeat="key in $ctrl.fields">
+        <label ng-attr-for="field-{{ key }}">{{ key }}</label>
 
-    <form class="form-inline" novalidate name="form">
-      <div class="form-group">
+        <select class="form-control"
+                ng-if="$ctrl.schema[key].formType === 'select'"
+                ng-attr-id="field-{{ key }}"
+                ng-model="$ctrl.record[key]"
+                ng-options="opt.val as opt.text for opt in $ctrl.schema[key].options">
+        </select>
+
+        <input type="checkbox"
+               ng-if="$ctrl.schema[key].formType === 'checkbox'"
+               ng-attr-id="field-{{ key }}"
+               ng-model="$ctrl.record[key]">
+
         <input type="text"
                class="form-control"
-               name="theText"
-               ng-model="$ctrl.theText"
-               required>
+               ng-if="$ctrl.schema[key].formType !== 'select' && $ctrl.schema[key].formType !== 'checkbox'"
+               ng-attr-id="field-{{ key }}"
+               ng-model="$ctrl.record[key]">
       </div>
-      <button type="button"
+
+      <button type="submit"
               class="btn btn-primary"
-              ng-disabled="form.theText.$invalid"
-              ng-click="$ctrl.add({title: $ctrl.theText})">Add</button>
+              ng-disabled="$ctrl.saving">
+        {{ $ctrl.saving ? 'Saving…' : 'Update user' }}
+      </button>
     </form>
   </div>
 </div>

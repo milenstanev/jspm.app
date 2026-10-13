@@ -30,6 +30,10 @@ test.describe('App', () => {
 
     await expect(page.locator('div[ui-view]')).toBeAttached({ timeout: 5000 });
 
+    await expect(page.locator('[data-testid="jspm-user-form"]')).toBeVisible({
+      timeout: 20000,
+    });
+
   });
 
 
