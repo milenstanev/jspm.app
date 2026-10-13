@@ -49,6 +49,7 @@ const required = [
   'index.html',
   'config.js',
   'desktop-ui-guest.js',
+  'users-form.js',
   path.join('src', 'app.css'),
   path.join('jspm_packages', 'system.js'),
   ...requiredDist.map((name) => path.join('dist', name)),
@@ -72,6 +73,7 @@ copyFile(
   path.join(root, 'desktop-ui-guest.js'),
   path.join(publicDir, 'desktop-ui-guest.js')
 );
+copyFile(path.join(root, 'users-form.js'), path.join(publicDir, 'users-form.js'));
 ensureDir(path.join(publicDir, 'src'));
 copyFile(path.join(root, 'src', 'app.css'), path.join(publicDir, 'src', 'app.css'));
 
@@ -79,7 +81,6 @@ for (const name of requiredDist) {
   copyFile(path.join(root, 'dist', name), path.join(publicDir, 'dist', name));
 }
 
-// Only SystemJS loader files needed at runtime in prod.
 for (const name of [
   'system.js',
   'system.js.map',
