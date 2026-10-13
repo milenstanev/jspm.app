@@ -70,11 +70,45 @@ test('gulp dev build completes', () => {
 test('index.html configured for dev mode', () => {
   const htmlPath = path.join(projectRoot, 'index.html');
   const content = fs.readFileSync(htmlPath, 'utf8');
-  if (!content.includes('SystemJS.import') || !content.includes('./src/index')) {
+  if (!content.includes('SystemJS.import') || !content.includes('src/index.js')) {
     throw new Error('index.html missing SystemJS.import for dev mode');
   }
   if (!content.includes('bootstrap.min.css') || !content.includes('src/app.css')) {
     throw new Error('index.html missing Bootstrap / app stylesheet');
+  }
+});
+
+test('home is a Bootstrap 3 schema form, not a todo list', () => {
+  const html = fs.readFileSync(path.join(projectRoot, 'src', 'home', 'home.html'), 'utf8');
+  const component = fs.readFileSync(
+    path.join(projectRoot, 'src', 'home', 'home.component.js'),
+    'utf8'
+  );
+  if (html.includes('todo') || component.includes('todo')) {
+    throw new Error('home still contains the old todo list');
+  }
+  ['form-group', 'form-control', 'btn btn-primary', 'jspm-user-form'].forEach((token) => {
+    if (!html.includes(token)) {
+      throw new Error(`home.html missing Bootstrap 3 token: ${token}`);
+    }
+  });
+  if (!component.includes('/api/users') || component.includes('/api/user"') || component.includes("/api/user'")) {
+    throw new Error('home must load schema-ui collection /api/users');
+  }
+  if (!component.includes("emit('userUpdated'")) {
+    throw new Error('home submit must emit userUpdated on window.desktopUi');
+  }
+});
+
+test('Vercel build uses npm run build:vercel and does not immutable-cache dist', () => {
+  const vercel = JSON.parse(fs.readFileSync(path.join(projectRoot, 'vercel.json'), 'utf8'));
+  if (vercel.buildCommand !== 'npm run build:vercel') {
+    throw new Error(`expected buildCommand npm run build:vercel, got ${vercel.buildCommand}`);
+  }
+  const distHeader = (vercel.headers || []).find((entry) => entry.source === '/dist/(.*)');
+  const cache = distHeader && distHeader.headers.find((h) => h.key === 'Cache-Control');
+  if (!cache || String(cache.value).includes('immutable') || String(cache.value).includes('31536000')) {
+    throw new Error('dist Cache-Control must not be immutable year-long');
   }
 });
 
@@ -127,17 +161,26 @@ test('index.html configured for prod after build', () => {
   if (!overrides.includes('"bundles"')) {
     throw new Error('prod-bundle-overrides.js must configure SystemJS bundles for lazy chunks');
   }
-  if (!overrides.includes('dist/home.bundle.js')) {
-    throw new Error('prod-bundle-overrides.js must map homeComponent to dist/home.bundle.js');
+  if (!overrides.includes('dist/home.bundle.form1.js')) {
+    throw new Error('prod-bundle-overrides.js must map homeComponent to dist/home.bundle.form1.js');
+  }
+  if (overrides.includes('defaultJSExtensions')) {
+    throw new Error('prod overrides must not set defaultJSExtensions (breaks bundle module ids)');
+  }
+  const homeChunk = fs.readFileSync(
+    path.join(projectRoot, 'dist', 'home.bundle.form1.js'),
+    'utf8'
+  );
+  if (!homeChunk.includes('jspm-user-form')) {
+    throw new Error('home chunk must contain the schema form, not a todo list');
   }
 });
 
-// Test 10: Prod emits lazy route chunk files
-test('prod emits lazy route chunk bundles', () => {
+test('prod emits cache-busted lazy route chunk bundles', () => {
   ['home', 'counter', 'timer', 'notes'].forEach((name) => {
-    const chunkPath = path.join(projectRoot, 'dist', `${name}.bundle.js`);
+    const chunkPath = path.join(projectRoot, 'dist', `${name}.bundle.form1.js`);
     if (!fs.existsSync(chunkPath)) {
-      throw new Error(`missing dist/${name}.bundle.js after prod build`);
+      throw new Error(`missing dist/${name}.bundle.form1.js after prod build`);
     }
   });
 });
