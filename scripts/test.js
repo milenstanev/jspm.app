@@ -184,6 +184,12 @@ test('index.html configured for prod after build', () => {
   if (!overrides.includes('dist/home.bundle.js')) {
     throw new Error('prod-bundle-overrides.js must map homeComponent to dist/home.bundle.js');
   }
+  if (!overrides.includes('src/home/home.module.js')) {
+    throw new Error('prod overrides must list src/home/home.module.js so SystemJS bundle ids match load.name');
+  }
+  if (overrides.includes('"homeComponent":"homeComponent"') || overrides.includes('"homeComponent": "homeComponent"')) {
+    throw new Error('prod overrides must not clobber feature paths (Vercel would rewrite /homeComponent.js to HTML)');
+  }
   if (overrides.includes('defaultJSExtensions')) {
     throw new Error('prod overrides must not set defaultJSExtensions (breaks bundle module ids)');
   }
