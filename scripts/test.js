@@ -113,10 +113,17 @@ test('home is a Bootstrap 3 schema form, not a todo list', () => {
   }
 });
 
-test('Vercel build uses npm run build:vercel and does not immutable-cache dist', () => {
+test('Vercel serves committed public/ and does not rebuild with jspm', () => {
   const vercel = JSON.parse(fs.readFileSync(path.join(projectRoot, 'vercel.json'), 'utf8'));
-  if (vercel.buildCommand !== 'npm run build:vercel') {
-    throw new Error(`expected buildCommand npm run build:vercel, got ${vercel.buildCommand}`);
+  if (vercel.installCommand != null || vercel.buildCommand != null) {
+    throw new Error('vercel.json must not install or build on Vercel (jspm/GitHub rate limits)');
+  }
+  if (vercel.outputDirectory !== 'public') {
+    throw new Error('vercel outputDirectory must be public');
+  }
+  const rewrite = (vercel.rewrites || [])[0] && vercel.rewrites[0].source;
+  if (!rewrite || !rewrite.includes('src/') || !rewrite.includes('dist/')) {
+    throw new Error('SPA rewrite must exclude dist/ and src/ so CSS and bundles are not rewritten to HTML');
   }
   const distHeader = (vercel.headers || []).find((entry) => entry.source === '/dist/(.*)');
   const cache = distHeader && distHeader.headers.find((h) => h.key === 'Cache-Control');
@@ -174,14 +181,14 @@ test('index.html configured for prod after build', () => {
   if (!overrides.includes('"bundles"')) {
     throw new Error('prod-bundle-overrides.js must configure SystemJS bundles for lazy chunks');
   }
-  if (!overrides.includes('dist/home.bundle.form1.js')) {
-    throw new Error('prod-bundle-overrides.js must map homeComponent to dist/home.bundle.form1.js');
+  if (!overrides.includes('dist/home.bundle.js')) {
+    throw new Error('prod-bundle-overrides.js must map homeComponent to dist/home.bundle.js');
   }
   if (overrides.includes('defaultJSExtensions')) {
     throw new Error('prod overrides must not set defaultJSExtensions (breaks bundle module ids)');
   }
   const homeChunk = fs.readFileSync(
-    path.join(projectRoot, 'dist', 'home.bundle.form1.js'),
+    path.join(projectRoot, 'dist', 'home.bundle.js'),
     'utf8'
   );
   if (!homeChunk.includes('jspm-user-form')) {
@@ -189,11 +196,11 @@ test('index.html configured for prod after build', () => {
   }
 });
 
-test('prod emits cache-busted lazy route chunk bundles', () => {
+test('prod emits lazy route chunk bundles', () => {
   ['home', 'counter', 'timer', 'notes'].forEach((name) => {
-    const chunkPath = path.join(projectRoot, 'dist', `${name}.bundle.form1.js`);
+    const chunkPath = path.join(projectRoot, 'dist', `${name}.bundle.js`);
     if (!fs.existsSync(chunkPath)) {
-      throw new Error(`missing dist/${name}.bundle.form1.js after prod build`);
+      throw new Error(`missing dist/${name}.bundle.js after prod build`);
     }
   });
 });

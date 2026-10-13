@@ -85,6 +85,10 @@ npx playwright test
 
 This app deploys as a **static site** from the committed `public/` folder.
 
+`vercel.json` must keep `installCommand` and `buildCommand` empty. GitHub/GitLab run `vercel deploy` of that folder. A remote `jspm install` / `gulp prod` on Vercel hits GitHub rate limits.
+
+Prod boots `SystemJS.import('src/index.js')` (the id registered in `app.bundle.js`). Do not import `./src/index.js` — Vercel would fetch a URL and the SPA rewrite can return HTML.
+
 ### Build locally, then commit `public/`
 
 ```bash
@@ -93,16 +97,6 @@ git add public
 git commit -m "Refresh Vercel public build"
 git push
 ```
-
-Vercel serves `public/` with no remote `jspm install` (avoids GitHub rate limits).
-
-### Optional: rebuild on Vercel
-
-If you want remote builds again, set:
-
-- `JSPM_GITHUB_AUTH_TOKEN` = GitHub PAT with `public_repo`
-
-and restore install/build commands in `vercel.json`.
 
 ### Linked project
 

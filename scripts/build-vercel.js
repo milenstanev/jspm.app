@@ -27,10 +27,10 @@ const requiredDist = [
   'prod-bundle-overrides.js',
   'core.bundle.js',
   'app.bundle.js',
-  'home.bundle.form1.js',
-  'counter.bundle.form1.js',
-  'timer.bundle.form1.js',
-  'notes.bundle.form1.js',
+  'home.bundle.js',
+  'counter.bundle.js',
+  'timer.bundle.js',
+  'notes.bundle.js',
 ];
 
 console.log('Ensuring feature module aliases in config.js...');
