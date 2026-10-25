@@ -19,26 +19,46 @@ class HomeCtrl extends CtrlBase {
     this.saving = false;
     this.error = '';
     this.status = '';
-    this.unsubscribeSync = null;
+    this.unsubscribeHost = [];
+    this.pendingHostRecord = null;
     this.load();
   }
 
-  $onInit() {
-    if (this.$window.desktopUi) {
-      this.$window.desktopUi.ready();
-      this.unsubscribeSync = this.$window.desktopUi.on('dashboardSync', (payload) => {
-        const record = payload && payload.record ? payload.record : payload;
-        this.$timeout(() => {
-          this.record = materializeRecordFromSchema(this.schema, record);
-        });
-      });
+  applyHostRecord(payload) {
+    if (payload && payload.entity && payload.entity !== 'users') {
+      return;
     }
+    const record = payload && payload.record ? payload.record : payload;
+    if (!record || typeof record !== 'object') {
+      this.load();
+      return;
+    }
+    this.$timeout(() => {
+      if (!this.fields.length) {
+        this.pendingHostRecord = record;
+        return;
+      }
+      this.record = materializeRecordFromSchema(this.schema, record);
+      this.error = '';
+      this.status = '';
+    });
+  }
+
+  $onInit() {
+    if (!this.$window.desktopUi || typeof this.$window.desktopUi.on !== 'function') {
+      return;
+    }
+    this.$window.desktopUi.ready();
+    ['userUpdated', 'dashboardSync'].forEach((name) => {
+      this.unsubscribeHost.push(
+        this.$window.desktopUi.on(name, (payload) => this.applyHostRecord(payload))
+      );
+    });
   }
 
   $onDestroy() {
-    if (this.unsubscribeSync) {
-      this.unsubscribeSync();
-    }
+    this.unsubscribeHost.forEach((off) => off && off());
+    this.unsubscribeHost = [];
   }
 
   load() {
@@ -63,7 +83,9 @@ class HomeCtrl extends CtrlBase {
         this.$timeout(() => {
           this.schema = schema;
           this.fields = Object.keys(schema);
-          const source = Array.isArray(users) ? users[0] : users;
+          const source = this.pendingHostRecord
+            || (Array.isArray(users) ? users[0] : users);
+          this.pendingHostRecord = null;
           this.record = materializeRecordFromSchema(schema, source);
           this.loading = false;
         });

@@ -259,37 +259,62 @@ System.register('src/home/home.component.js', ['npm:systemjs-plugin-babel@0.0.25
           _this.saving = false;
           _this.error = '';
           _this.status = '';
-          _this.unsubscribeSync = null;
+          _this.unsubscribeHost = [];
+          _this.pendingHostRecord = null;
           _this.load();
           return _this;
         }
 
         _createClass(HomeCtrl, [{
-          key: '$onInit',
-          value: function $onInit() {
+          key: 'applyHostRecord',
+          value: function applyHostRecord(payload) {
             var _this2 = this;
 
-            if (this.$window.desktopUi) {
-              this.$window.desktopUi.ready();
-              this.unsubscribeSync = this.$window.desktopUi.on('dashboardSync', function (payload) {
-                var record = payload && payload.record ? payload.record : payload;
-                _this2.$timeout(function () {
-                  _this2.record = materializeRecordFromSchema(_this2.schema, record);
-                });
-              });
+            if (payload && payload.entity && payload.entity !== 'users') {
+              return;
             }
+            var record = payload && payload.record ? payload.record : payload;
+            if (!record || typeof record !== 'object') {
+              this.load();
+              return;
+            }
+            this.$timeout(function () {
+              if (!_this2.fields.length) {
+                _this2.pendingHostRecord = record;
+                return;
+              }
+              _this2.record = materializeRecordFromSchema(_this2.schema, record);
+              _this2.error = '';
+              _this2.status = '';
+            });
+          }
+        }, {
+          key: '$onInit',
+          value: function $onInit() {
+            var _this3 = this;
+
+            if (!this.$window.desktopUi || typeof this.$window.desktopUi.on !== 'function') {
+              return;
+            }
+            this.$window.desktopUi.ready();
+            ['userUpdated', 'dashboardSync'].forEach(function (name) {
+              _this3.unsubscribeHost.push(_this3.$window.desktopUi.on(name, function (payload) {
+                return _this3.applyHostRecord(payload);
+              }));
+            });
           }
         }, {
           key: '$onDestroy',
           value: function $onDestroy() {
-            if (this.unsubscribeSync) {
-              this.unsubscribeSync();
-            }
+            this.unsubscribeHost.forEach(function (off) {
+              return off && off();
+            });
+            this.unsubscribeHost = [];
           }
         }, {
           key: 'load',
           value: function load() {
-            var _this3 = this;
+            var _this4 = this;
 
             this.loading = true;
             this.error = '';
@@ -309,24 +334,25 @@ System.register('src/home/home.component.js', ['npm:systemjs-plugin-babel@0.0.25
                   schema = _ref2[0],
                   users = _ref2[1];
 
-              _this3.$timeout(function () {
-                _this3.schema = schema;
-                _this3.fields = Object.keys(schema);
-                var source = Array.isArray(users) ? users[0] : users;
-                _this3.record = materializeRecordFromSchema(schema, source);
-                _this3.loading = false;
+              _this4.$timeout(function () {
+                _this4.schema = schema;
+                _this4.fields = Object.keys(schema);
+                var source = _this4.pendingHostRecord || (Array.isArray(users) ? users[0] : users);
+                _this4.pendingHostRecord = null;
+                _this4.record = materializeRecordFromSchema(schema, source);
+                _this4.loading = false;
               });
             }).catch(function (err) {
-              _this3.$timeout(function () {
-                _this3.loading = false;
-                _this3.error = err && err.message ? err.message : 'Could not load user';
+              _this4.$timeout(function () {
+                _this4.loading = false;
+                _this4.error = err && err.message ? err.message : 'Could not load user';
               });
             });
           }
         }, {
           key: 'submit',
           value: function submit() {
-            var _this4 = this;
+            var _this5 = this;
 
             if (!this.record || !this.record._id) {
               return;
@@ -344,21 +370,21 @@ System.register('src/home/home.component.js', ['npm:systemjs-plugin-babel@0.0.25
               body: JSON.stringify(record),
               cache: 'no-store'
             }).then(function () {
-              if (_this4.$window.desktopUi) {
-                _this4.$window.desktopUi.emit('userUpdated', {
+              if (_this5.$window.desktopUi) {
+                _this5.$window.desktopUi.emit('userUpdated', {
                   entity: 'users',
                   record: record
                 });
-                _this4.$window.desktopUi.setTitle(record.username || 'User');
+                _this5.$window.desktopUi.setTitle(record.username || 'User');
               }
-              _this4.$timeout(function () {
-                _this4.saving = false;
-                _this4.status = 'Dashboard synced';
+              _this5.$timeout(function () {
+                _this5.saving = false;
+                _this5.status = 'Dashboard synced';
               });
             }).catch(function (err) {
-              _this4.$timeout(function () {
-                _this4.saving = false;
-                _this4.error = err && err.message ? err.message : 'Update failed';
+              _this5.$timeout(function () {
+                _this5.saving = false;
+                _this5.error = err && err.message ? err.message : 'Update failed';
               });
             });
           }
