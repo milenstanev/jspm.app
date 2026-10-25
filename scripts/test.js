@@ -83,11 +83,8 @@ test('index.html configured for dev mode', () => {
   if (!content.includes('bootstrap.min.css') || !content.includes('src/app.css')) {
     throw new Error('index.html missing Bootstrap / app stylesheet');
   }
-  if (
-    content.indexOf('users-form.lib.js') < 0 ||
-    content.indexOf('users-form.lib.js') > content.indexOf('users-form.js')
-  ) {
-    throw new Error('index.html must load users-form.lib.js before users-form.js');
+  if (content.includes('users-schema-form') || content.includes('users-form.js')) {
+    throw new Error('index.html must not mount the vanilla users-form; home is the Angular ui-view');
   }
 });
 
