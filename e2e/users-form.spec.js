@@ -83,4 +83,33 @@ test.describe('Users schema form', () => {
     expect(events[0].payload.record._id).toBe('user-demo');
     expect(events[0].payload.record.username).toBe('synced-user');
   });
+
+  test('host userUpdated updates the form', async ({ page }) => {
+    await page.addInitScript(() => {
+      window.__hostHandlers = {};
+      window.desktopUi = {
+        ready: function () {},
+        setTitle: function () {},
+        emit: function () {},
+        on: function (name, handler) {
+          window.__hostHandlers[name] = window.__hostHandlers[name] || [];
+          window.__hostHandlers[name].push(handler);
+          return function () {};
+        },
+      };
+    });
+    await page.goto('/#!/home');
+    const form = page.getByTestId('jspm-user-form');
+    await expect(form.getByLabel('username')).toHaveValue('mstanev', { timeout: 20000 });
+    await page.evaluate(() => {
+      (window.__hostHandlers.userUpdated || []).forEach(function (handler) {
+        handler({
+          entity: 'users',
+          record: { _id: 'user-demo', username: 'from-host', phone: '111' },
+        });
+      });
+    });
+    await expect(form.getByLabel('username')).toHaveValue('from-host');
+    await expect(form.getByLabel('phone')).toHaveValue('111');
+  });
 });

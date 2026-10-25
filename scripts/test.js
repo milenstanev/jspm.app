@@ -108,6 +108,9 @@ test('home is a Bootstrap 3 schema form, not a todo list', () => {
   if (!component.includes("emit('userUpdated'")) {
     throw new Error('home submit must emit userUpdated on window.desktopUi');
   }
+  if (!component.includes("'userUpdated'") || !component.includes('applyHostRecord')) {
+    throw new Error('home must listen for host userUpdated and apply it to the form');
+  }
 });
 
 test('Vercel serves committed public/ and does not rebuild with jspm', () => {
