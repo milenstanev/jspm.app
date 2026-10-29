@@ -1,4 +1,4 @@
-export const futureRoutes = [
+export const lazyRoutes = [
   {
     stateName: 'home',
     urlPrefix: '/home',

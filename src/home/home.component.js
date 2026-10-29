@@ -24,6 +24,16 @@ class HomeCtrl extends CtrlBase {
     this.load();
   }
 
+  labelFor(key) {
+    const field = this.schema[key] || {};
+    if (typeof field.label === 'string' && field.label) {
+      return field.label;
+    }
+    return key
+      .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+      .replace(/^./, (c) => c.toUpperCase());
+  }
+
   applyHostRecord(payload) {
     if (payload && payload.entity && payload.entity !== 'users') {
       return;

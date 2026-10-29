@@ -14,7 +14,7 @@
       <div class="form-group" ng-repeat="key in $ctrl.fields">
         <label class="control-label"
                ng-attr-for="field-{{ key }}"
-               ng-if="$ctrl.schema[key].formType !== 'checkbox'">{{ key }}</label>
+               ng-if="$ctrl.schema[key].formType !== 'checkbox'">{{ $ctrl.labelFor(key) }}</label>
 
         <select class="form-control"
                 ng-if="$ctrl.schema[key].formType === 'select'"
@@ -29,7 +29,7 @@
             <input type="checkbox"
                    ng-attr-id="field-{{ key }}"
                    ng-model="$ctrl.record[key]">
-            {{ key }}
+            {{ $ctrl.labelFor(key) }}
           </label>
         </div>
 
