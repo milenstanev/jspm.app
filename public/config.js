@@ -78,15 +78,6 @@ System.config({
     "github:milenstanev/jspm.angular.test-module@master": {
       "angular-core": "github:milenstanev/mstanev.angular.1.x.x.core@0.0.5"
     },
-    "github:milenstanev/mstanev.angular.1.x.x.core@0.0.3": {
-      "angular": "github:angular/bower-angular@1.8.3",
-      "angular-animate": "github:angular/bower-angular-animate@1.8.3",
-      "angular-sanitize": "github:angular/bower-angular-sanitize@1.8.3",
-      "angular-strap": "npm:angular-strap@2.3.12",
-      "angular-ui-router": "npm:@uirouter/angularjs@1.1.2",
-      "jirikavi/AngularJS-Toaster": "github:jirikavi/AngularJS-Toaster@2.2.0",
-      "json": "github:systemjs/plugin-json@0.3.0"
-    },
     "github:milenstanev/mstanev.angular.1.x.x.core@0.0.5": {
       "angular": "github:angular/bower-angular@1.8.3",
       "angular-animate": "github:angular/bower-angular-animate@1.8.3",
