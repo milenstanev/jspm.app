@@ -134,7 +134,7 @@ test('Vercel serves committed public/ and does not rebuild with jspm', () => {
 
 // Test 7: ESLint passes on core source files
 test('ESLint passes on core source files', () => {
-  execSync('npx eslint "src/index.js" "src/futureRoutes.js" "src/home/home.module.js" --max-warnings 999', {
+  execSync('npx eslint "src/index.js" "src/lazyRoutes.js" "src/home/home.module.js" --max-warnings 999', {
     cwd: projectRoot,
     stdio: 'pipe'
   });

@@ -1,10 +1,10 @@
 import { angular, CoreModule } from 'angular-core';
 import { appLazyLoadRouterModule, futureRoutesCollection } from 'featureRoutes';
 
-import { futureRoutes } from './futureRoutes';
+import { lazyRoutes } from './lazyRoutes';
 
-const defaultView = futureRoutes[0].urlPrefix || '/home';
-Object.assign(futureRoutesCollection, [...futureRoutes]);
+const defaultView = lazyRoutes[0].urlPrefix || '/home';
+Object.assign(futureRoutesCollection, [...lazyRoutes]);
 
 export const Module = angular
   .module('app', [
