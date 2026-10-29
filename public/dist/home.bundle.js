@@ -127,7 +127,7 @@ System.register("src/home/home.html!github:systemjs/plugin-text@0.0.11.js", [], 
   return {
     setters: [],
     execute: function () {
-      _export("__useDefault", __useDefault = "<div class=\"panel panel-default\" data-testid=\"jspm-user-form\">\r\n  <div class=\"panel-heading\">\r\n    <h1 class=\"panel-title\">{{ $ctrl.title }}</h1>\r\n  </div>\r\n  <div class=\"panel-body\">\r\n    <p class=\"text-muted\" ng-if=\"$ctrl.loading\">Loading schema…</p>\r\n    <p class=\"text-danger\" ng-if=\"$ctrl.error\" role=\"alert\">{{ $ctrl.error }}</p>\r\n    <p class=\"text-success\" ng-if=\"$ctrl.status\" role=\"status\">{{ $ctrl.status }}</p>\r\n\r\n    <form name=\"userForm\"\r\n          novalidate\r\n          ng-if=\"$ctrl.record && $ctrl.fields.length\"\r\n          ng-submit=\"$ctrl.submit()\">\r\n      <div class=\"form-group\" ng-repeat=\"key in $ctrl.fields\">\r\n        <label class=\"control-label\"\r\n               ng-attr-for=\"field-{{ key }}\"\r\n               ng-if=\"$ctrl.schema[key].formType !== 'checkbox'\">{{ key }}</label>\r\n\r\n        <select class=\"form-control\"\r\n                ng-if=\"$ctrl.schema[key].formType === 'select'\"\r\n                ng-attr-id=\"field-{{ key }}\"\r\n                ng-model=\"$ctrl.record[key]\"\r\n                ng-options=\"opt.val as opt.text for opt in $ctrl.schema[key].options\">\r\n        </select>\r\n\r\n        <div class=\"checkbox\"\r\n             ng-if=\"$ctrl.schema[key].formType === 'checkbox'\">\r\n          <label>\r\n            <input type=\"checkbox\"\r\n                   ng-attr-id=\"field-{{ key }}\"\r\n                   ng-model=\"$ctrl.record[key]\">\r\n            {{ key }}\r\n          </label>\r\n        </div>\r\n\r\n        <input type=\"text\"\r\n               class=\"form-control\"\r\n               ng-if=\"$ctrl.schema[key].formType !== 'select' && $ctrl.schema[key].formType !== 'checkbox'\"\r\n               ng-attr-id=\"field-{{ key }}\"\r\n               ng-model=\"$ctrl.record[key]\">\r\n      </div>\r\n\r\n      <button type=\"submit\"\r\n              class=\"btn btn-primary\"\r\n              ng-disabled=\"$ctrl.saving\">\r\n        {{ $ctrl.saving ? 'Saving…' : 'Update user' }}\r\n      </button>\r\n    </form>\r\n  </div>\r\n</div>\r\n");
+      _export("__useDefault", __useDefault = "<div class=\"panel panel-default\" data-testid=\"jspm-user-form\">\r\n  <div class=\"panel-heading\">\r\n    <h1 class=\"panel-title\">{{ $ctrl.title }}</h1>\r\n  </div>\r\n  <div class=\"panel-body\">\r\n    <p class=\"text-muted\" ng-if=\"$ctrl.loading\">Loading schema…</p>\r\n    <p class=\"text-danger\" ng-if=\"$ctrl.error\" role=\"alert\">{{ $ctrl.error }}</p>\r\n    <p class=\"text-success\" ng-if=\"$ctrl.status\" role=\"status\">{{ $ctrl.status }}</p>\r\n\r\n    <form name=\"userForm\"\r\n          novalidate\r\n          ng-if=\"$ctrl.record && $ctrl.fields.length\"\r\n          ng-submit=\"$ctrl.submit()\">\r\n      <div class=\"form-group\" ng-repeat=\"key in $ctrl.fields\">\r\n        <label class=\"control-label\"\r\n               ng-attr-for=\"field-{{ key }}\"\r\n               ng-if=\"$ctrl.schema[key].formType !== 'checkbox'\">{{ $ctrl.labelFor(key) }}</label>\r\n\r\n        <select class=\"form-control\"\r\n                ng-if=\"$ctrl.schema[key].formType === 'select'\"\r\n                ng-attr-id=\"field-{{ key }}\"\r\n                ng-model=\"$ctrl.record[key]\"\r\n                ng-options=\"opt.val as opt.text for opt in $ctrl.schema[key].options\">\r\n        </select>\r\n\r\n        <div class=\"checkbox\"\r\n             ng-if=\"$ctrl.schema[key].formType === 'checkbox'\">\r\n          <label>\r\n            <input type=\"checkbox\"\r\n                   ng-attr-id=\"field-{{ key }}\"\r\n                   ng-model=\"$ctrl.record[key]\">\r\n            {{ $ctrl.labelFor(key) }}\r\n          </label>\r\n        </div>\r\n\r\n        <input type=\"text\"\r\n               class=\"form-control\"\r\n               ng-if=\"$ctrl.schema[key].formType !== 'select' && $ctrl.schema[key].formType !== 'checkbox'\"\r\n               ng-attr-id=\"field-{{ key }}\"\r\n               ng-model=\"$ctrl.record[key]\">\r\n      </div>\r\n\r\n      <button type=\"submit\"\r\n              class=\"btn btn-primary\"\r\n              ng-disabled=\"$ctrl.saving\">\r\n        {{ $ctrl.saving ? 'Saving…' : 'Update user' }}\r\n      </button>\r\n    </form>\r\n  </div>\r\n</div>\r\n");
 
       _export("__useDefault", __useDefault);
 
@@ -188,6 +188,7 @@ System.register('src/home/materializeRecord.js', [], function (_export, _context
 
     Object.keys(schema || {}).forEach(function (key) {
       var field = schema[key] || {};
+
       if (existing[key] !== undefined) {
         record[key] = existing[key];
         return;
@@ -266,6 +267,17 @@ System.register('src/home/home.component.js', ['npm:systemjs-plugin-babel@0.0.25
         }
 
         _createClass(HomeCtrl, [{
+          key: 'labelFor',
+          value: function labelFor(key) {
+            var field = this.schema[key] || {};
+            if (typeof field.label === 'string' && field.label) {
+              return field.label;
+            }
+            return key.replace(/([a-z0-9])([A-Z])/g, '$1 $2').replace(/^./, function (c) {
+              return c.toUpperCase();
+            });
+          }
+        }, {
           key: 'applyHostRecord',
           value: function applyHostRecord(payload) {
             var _this2 = this;

@@ -1331,14 +1331,14 @@ define("github:milenstanev/jspm.angular.lazyload-router@master.js", ["github:mil
 });
 
 })();
-System.register('src/futureRoutes.js', [], function (_export, _context) {
+System.register('src/lazyRoutes.js', [], function (_export, _context) {
   "use strict";
 
-  var futureRoutes;
+  var lazyRoutes;
   return {
     setters: [],
     execute: function () {
-      _export('futureRoutes', futureRoutes = [{
+      _export('lazyRoutes', lazyRoutes = [{
         stateName: 'home',
         urlPrefix: '/home',
         type: 'load',
@@ -1368,14 +1368,14 @@ System.register('src/futureRoutes.js', [], function (_export, _context) {
         moduleExportName: 'app.notes'
       }]);
 
-      _export('futureRoutes', futureRoutes);
+      _export('lazyRoutes', lazyRoutes);
     }
   };
 });
-System.register('src/index.js', ['npm:systemjs-plugin-babel@0.0.25/babel-helpers/toConsumableArray.js', 'github:milenstanev/mstanev.angular.1.x.x.core@0.0.5.js', 'github:milenstanev/jspm.angular.lazyload-router@master.js', 'src/futureRoutes.js'], function (_export, _context) {
+System.register('src/index.js', ['npm:systemjs-plugin-babel@0.0.25/babel-helpers/toConsumableArray.js', 'github:milenstanev/mstanev.angular.1.x.x.core@0.0.5.js', 'github:milenstanev/jspm.angular.lazyload-router@master.js', 'src/lazyRoutes.js'], function (_export, _context) {
   "use strict";
 
-  var _toConsumableArray, angular, CoreModule, appLazyLoadRouterModule, futureRoutesCollection, futureRoutes, defaultView, Module;
+  var _toConsumableArray, angular, CoreModule, appLazyLoadRouterModule, futureRoutesCollection, lazyRoutes, defaultView, Module;
 
   function bootstrapApp() {
     if (!document.body || document.body.hasAttribute('data-ng-app-bootstrap')) {
@@ -1394,13 +1394,13 @@ System.register('src/index.js', ['npm:systemjs-plugin-babel@0.0.25/babel-helpers
     }, function (_githubMilenstanevJspmAngularLazyloadRouterMasterJs) {
       appLazyLoadRouterModule = _githubMilenstanevJspmAngularLazyloadRouterMasterJs.appLazyLoadRouterModule;
       futureRoutesCollection = _githubMilenstanevJspmAngularLazyloadRouterMasterJs.futureRoutesCollection;
-    }, function (_srcFutureRoutesJs) {
-      futureRoutes = _srcFutureRoutesJs.futureRoutes;
+    }, function (_srcLazyRoutesJs) {
+      lazyRoutes = _srcLazyRoutesJs.lazyRoutes;
     }],
     execute: function () {
-      defaultView = futureRoutes[0].urlPrefix || '/home';
+      defaultView = lazyRoutes[0].urlPrefix || '/home';
 
-      Object.assign(futureRoutesCollection, [].concat(_toConsumableArray(futureRoutes)));
+      Object.assign(futureRoutesCollection, [].concat(_toConsumableArray(lazyRoutes)));
 
       _export('Module', Module = angular.module('app', [CoreModule, appLazyLoadRouterModule]).constant('defaultView', defaultView).config(function ($stateProvider, $urlRouterProvider, defaultView) {
         $stateProvider.state('404', {
